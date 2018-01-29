@@ -31,6 +31,9 @@ Software Sistem Informasi Manajemen Badan Amil Zakat mencakup fungsi-fungsi beri
 *	Pengaturan koneksi database, 
 *	backup-restore data
 
+# Screenshots
+
+
 # Hardware yang Dibutuhkan
 
 Hardware yang diperlukan merupakan perangkat pendukung Software Sistem Informasi Manajemen Badan Amil Zakat, yang terdiri dari:
@@ -53,3 +56,24 @@ Spesifikasi minimal server:
 *	Printer untuk mencetak dokumen-dokumen  dan laporan-laporan.
 *	LAN (Local Area Network) yang dapat berupa cable-based atau wireless (tanpa kabel). 
 *	Instalasi hardware, dengan memperhatikan posisi wireless access point (WAP) atau LAN hub agar dapat memberikan akses optimal ke semua operator.
+
+# Kompilasi
+
+## Compiler dan IDE
+
+Software SIMBAZ ini dicompile menggunakan Embarcadero Delphi XE8 32bit pada Windows 7 Home Basic 32bit. Compilasi dengan IDE lain tidak dianjurkan. Kompilasi dengan Delphi versi sebelum dan setelah XE8 belum diuji-coba, demikian pula kompilasi pada OS Windows selain Windows 7 32 bit. Executable hasil kompilasi telah diuji-jalankan pada Windows 7 32bit/64bit, Windows 8 dan Windows 10 secara normal.
+
+## Dependencies
+
+Software tambahan dan 3rd party component:
+- Devart Unidac v.6.1.3 for RAD Studio XE8
+- TMS Componenct Pack v.8.0.0
+- EhLib 9.0 Build 9.0.033
+- TPersen 1.0.0 [Git it here](https://github.com/AndanTeknomedia/TPersen)
+- Jedi VCL v.349 Complete with JCL v.27-Build 5676
+- MiTec MDIButtonGroup
+- FastReport 5.4.7
+
+## Notes
+
+Pada source code project dan Stored Procedure, beberapa kode akun (dari Chart Of Accounts/COA) telah di-hard-coded demi menjaga aplikasi tetap simple tanpa terlalu banyak form konfigurasi untuk membuatnya dinamis. Anda mungkin perlu merevisi kode-kode ini jika terjadi perubahan struktur akun pada COA.
