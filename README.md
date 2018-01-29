@@ -3,9 +3,12 @@ Software Pengelolaan Zakat Untuk Baznas Daerah
 
 # Latar Belakang
 Pengelolaan pengumpulan dan pendistribusian zakat di Indonesia telah diatur dalam peraturan pemerintah dan peraturan kementerian serta diatur secara teknis dalam standar akuntansi, yang karenanya, informasi dan data yang diperoleh dapat lebih mudah dilaporkan dan diolah lebih lanjut. Data-data wajib zakat yang ada dapat diatur sehingga memudahkan pekerjaan pengelola zakat, dalam hal ini Badan Amil Zakat, untuk mencatat penerimaan zakat dan melaporkannya. Di sisi pendistribusian, penyaluran zakat ke penerima perorangan sesuai asnab yang ditentukan maupun dalam bentuk program-program sosial dapat dicatat lebih mudah dan rinci. Dari keseluruhan proses, laporan-laporan yang ditetapkan pun dapat lebih mudah diterbitkan dengan format yang standar dan mudah dipahami.
+
 Keuntungan dan manfaat yang didapat di atas dapat menjadi sulit terpenuhi, jika sistem pencatatan masih manual, di mana pencatatan informasi dan pencarian data serta pelaporan masih dilakukan oleh manusia. Ini menjadi penyebab kelambatan pelayanan, keruwetan pencatatan, kelambatan pelaporan dan rentan terjadi kesalahan karena human error.
+
 Dengan demikian diharapkan bahwa software Sistem Informasi Manajemen Badan Amil Zakat dapat menjadi bagian dari solusi: pendataan wajib zakat (muzakki) dan penyetor infaq, shadaqah dan sumber penerimaan lain, pencatatan rinci dan rekap yang mudah ditelusuri dan dicari, penerimaan dan penyaluran yang terkategorisasi, penerbitan laporan yang lebih mudah dan cepat, serta keseluruhan pekerjaan yang lebih ringkas. 
-Software
+
+# Software
 Software Sistem Informasi Manajemen Badan Amil Zakat mencakup fungsi-fungsi berikut:
 1.	Pengaturan dan referensi
 *	Pengaturan data kode akun sesuai standar yang berlaku
