@@ -1,0 +1,188 @@
+unit u_edit_user;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ExtCtrls, StdCtrls, Buttons, DBCtrls, DB, MemDS,
+  DBAccess, Uni, u_utils;
+
+type
+  TFEditUser = class(TForm)
+    Label11: TLabel;
+    Label13: TLabel;
+    Label18: TLabel;
+    Bevel2: TBevel;
+    SpeedButton1: TSpeedButton;
+    Label19: TLabel;
+    Label20: TLabel;
+    Label21: TLabel;
+    Panel6: TPanel;
+    Bevel5: TBevel;
+    Button3: TButton;
+    Button4: TButton;
+    eUid: TEdit;
+    ENama: TEdit;
+    ePass1: TEdit;
+    ePass2: TEdit;
+    Label1: TLabel;
+    UniQuery1: TUniQuery;
+    DataSource1: TDataSource;
+    eProfile: TDBLookupComboBox;
+    Label6: TLabel;
+    UniQuery1group_kode: TStringField;
+    UniQuery1group_name: TStringField;
+    ckAllow: TCheckBox;
+    procedure FormCreate(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
+    procedure eUidKeyPress(Sender: TObject; var Key: Char);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    _isEdit: Boolean;
+  end;
+
+var
+  FEditUser: TFEditUser;
+
+function ShowAddUser(var User: TUser): Boolean;
+function ShowEditUser(var User: TUser): Boolean;
+
+implementation
+
+uses u_select_kode_name, u_display_text, umain;
+
+{$R *.dfm}
+
+function ShowAddUser;
+begin
+  Result := False;
+  with TFEditUser.Create(Application) do
+  begin
+    try
+      _isEdit := false;
+      eProfile.KeyValue  := 'OPR'; // Default as Operator
+      eUid.Clear;
+      ENama.clear;
+      ePass1.clear;
+      ePass2.clear;
+
+      ckAllow.Checked    := true;
+      tag := mrNone;
+      ShowModal;
+      if Tag = mrOk then
+      begin
+        User.Clear;
+        User.Grup        := eProfile.KeyValue;
+        User.UserName    := eUid.Text;
+        user.FullName    := ENama.Text;
+        User.Password := ePass1.Text;
+        User.AllowLogin := ckAllow.Checked;
+        Result      := true;
+        {
+        ShowText(
+          'insert into usr_user (user_name, email, user_password, full_name, group_kode, allow_login) '+
+          ' values ( '+
+          _q(User.UserName)+', '+
+          _q(User.UserName+'@'+CurrentUser.KodeCabang+'.simbaz.atm.id')+', '+
+          _q(User.Password)+', '+
+          _q(User.FullName)+', '+
+          _q(User.Grup)+', '+
+          _q(_iif(User.AllowLogin, 'Y','N'))+') returning user_name'
+        );
+        }
+      end;
+    finally
+      Free;
+    end;
+  end;
+end;
+
+function ShowEditUser;
+begin
+  Result := False;
+  with TFEditUser.Create(Application) do
+  begin
+    try
+      _isEdit := true;
+
+      eProfile.KeyValue  := User.Grup;
+      eUid.Text          := User.UserName;
+      eUid.ReadOnly      := true;
+      eUid.TabStop       := false;
+      eUid.Color         := clBtnFace;
+
+      ENama.Text         := User.FullName;
+      ePass1.Text        := User.Password;
+      ePass2.Text        := User.Password;
+
+      ckAllow.Checked    := User.AllowLogin;
+      tag := mrNone;
+      ShowModal;
+      if Tag = mrOk then
+      begin
+        // User.Clear;
+        User.Grup        := eProfile.KeyValue;
+        user.FullName    := ENama.Text;
+        if ePass1.Text<>'' then
+          User.Password := ePass1.Text;
+        User.AllowLogin := ckAllow.Checked;
+        Result      := true;
+      end;
+    finally
+      Free;
+    end;
+  end;
+end;
+
+procedure TFEditUser.Button3Click(Sender: TObject);
+begin
+  if eUid.WarnForEmpty('Username/ID masih kosong.') then exit;
+  if ENama.IsEmpty then
+    ENama.Text := _u(eUid.Text)[1]+copy(_l(eUid.Text),2,255);
+  if not _isEdit then
+  begin
+    if ePass1.WarnForEmpty('Untuk User baru, password harus diisi.') then
+      exit;
+  end;
+  if ePass1.Text<>ePass2.Text then
+  begin
+    Deny('Password tidak sama dengan konfirmasinya.');
+    ePass1.SetFocus;
+    exit;
+  end;
+  tag := mrOk;
+  Close;
+end;
+
+procedure TFEditUser.Button4Click(Sender: TObject);
+begin
+  tag := mrCancel;
+  Close;
+end;
+
+procedure TFEditUser.eUidKeyPress(Sender: TObject; var Key: Char);
+begin
+  if not (key in ['_','0'..'9', 'a'..'z', 'A'..'Z',#8, chr(VK_DELETE)]) then
+    key := #0;
+end;
+
+procedure TFEditUser.FormCreate(Sender: TObject);
+begin
+  UniQuery1.Open;
+end;
+
+procedure TFEditUser.SpeedButton1Click(Sender: TObject);
+var
+  s: String;
+begin
+  s := RandomPassword(8);
+  ePass1.Text := Trim(s);
+  ePass2.Text := Trim(s);
+  InputBox('Password Generator', 'Harap dicatat password Anda:', s);
+end;
+
+end.

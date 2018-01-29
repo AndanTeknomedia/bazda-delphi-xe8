@@ -1,0 +1,3 @@
+1. Buat Form Pengeluaran dengan mencatat Jenis Dana di tabel jurnal (buatkan):
+	- Khusus dana non ZIS
+2. Sehingga dietahui rekap penggunaan dana

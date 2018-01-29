@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2010/12/15 20:15:04.402.dfm,D:\MIT\MitPgAutoBackup\umain.dfm=C:\Users\buyut\Documents\RAD Studio\Projects\Unit2.dfm</Transaction>
+    <Transaction>2010/12/15 20:15:04.402.pas,D:\MIT\MitPgAutoBackup\umain.pas=C:\Users\buyut\Documents\RAD Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2010/12/15 20:15:20.493.dproj,D:\MIT\MitPgAutoBackup\mitpgab.dproj=C:\Users\buyut\Documents\RAD Studio\Projects\Project2.dproj</Transaction>
+    <Transaction>2010/12/16 07:34:30.788.pas,D:\MIT\MitPgAutoBackup\ubackupSettings.pas=D:\MIT\MitPgAutoBackup\Unit1.pas</Transaction>
+    <Transaction>2010/12/16 07:34:30.798.dfm,D:\MIT\MitPgAutoBackup\ubackupSettings.dfm=D:\MIT\MitPgAutoBackup\Unit1.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

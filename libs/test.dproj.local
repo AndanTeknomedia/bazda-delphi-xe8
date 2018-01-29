@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2015/11/17 20:12:30.929.pas,C:\Users\Toshiba\Documents\RAD Studio\Projects\Unit1.pas=E:\Projects\APBD Desa\Source\modules\libs\u_test_main.pas</Transaction>
+    <Transaction>2015/11/17 20:12:30.929.dfm,C:\Users\Toshiba\Documents\RAD Studio\Projects\Unit1.dfm=E:\Projects\APBD Desa\Source\modules\libs\u_test_main.dfm</Transaction>
+    <Transaction>2015/11/17 20:12:36.229.dproj,C:\Users\Toshiba\Documents\RAD Studio\Projects\Project1.dproj=E:\Projects\APBD Desa\Source\modules\libs\test.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

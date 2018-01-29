@@ -1,0 +1,13 @@
+MIT POSTGRE DATABASE AUTO BACKUP
+
+Connection Settings: 
+Host:localhost
+Port:5432
+User:postgres
+Pass:b3vjhzxx
+DB:jamkrida
+
+Backup Settings: 
+BackupDir:C:\Users\Toshiba\Desktop
+BackupNameFormat:Postgre_%db%_backup_%year%-%month%-%date%
+BackupTime:11:30:00

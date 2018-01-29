@@ -33,6 +33,14 @@ Software Sistem Informasi Manajemen Badan Amil Zakat mencakup fungsi-fungsi beri
 
 # Screenshots
 
+![Chart Of Accounts](Screenshots/01.png)
+
+![Penerimaan Dana Zakat](Screenshots/02.png)
+
+![Penyaluran Dana Zakat](Screenshots/03.png)
+
+![Laporan Posisi Keuangan](Screenshots/04.png)
+
 
 # Hardware yang Dibutuhkan
 
@@ -77,3 +85,8 @@ Software tambahan dan 3rd party component:
 ## Notes
 
 Pada source code project dan Stored Procedure, beberapa kode akun (dari Chart Of Accounts/COA) telah di-hard-coded demi menjaga aplikasi tetap simple tanpa terlalu banyak form konfigurasi untuk membuatnya dinamis. Anda mungkin perlu merevisi kode-kode ini jika terjadi perubahan struktur akun pada COA.
+
+# Database Server
+
+Database server menggunakan PostgreSQL 8.4 dengan *akses superuser (postgres)*. 
+Akses superuser diperlukan untuk membuat custom domain.
