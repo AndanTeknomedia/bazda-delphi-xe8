@@ -11,6 +11,7 @@ object FPrintBsLrCfEc: TFPrintBsLrCfEc
   Font.Name = 'Tahoma'
   Font.Style = []
   FormStyle = fsMDIChild
+  KeyPreview = True
   OldCreateOrder = False
   Position = poScreenCenter
   ShowHint = True
@@ -18,6 +19,7 @@ object FPrintBsLrCfEc: TFPrintBsLrCfEc
   WindowState = wsMaximized
   OnClose = FormClose
   OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 13
   object ActionToolBar1: TActionToolBar

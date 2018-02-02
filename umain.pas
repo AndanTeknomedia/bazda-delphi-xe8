@@ -997,12 +997,12 @@ begin
   4 - Kode Kelurahan
   }
   if _u(tipe) = 'ORG' then
-    j := ' (tipe = ''01'') '
+    j := ' (m.tipe = ''01'') '
   else
   if _u(tipe) = 'UPZ' then
-    j := ' (not (kode in (''00'',''01''))) '
+    j := ' (not (m.tipe in (''00'',''01''))) '
   else
-    j := ' (kode<>''00'') ';
+    j := ' (m.tipe<>''00'') ';
   j := 'select m.npwm, m.nama, (s.nama||'', ''||s.kecamatan) alamat, '+
     'b.uraian jenis, m.kelurahan from baz_mustahik m '+
     'inner join v_kelurahan s on s.kode = m.kelurahan '+
@@ -1033,12 +1033,12 @@ begin
   4 - Kode Kelurahan
   }
   if _u(tipe) = 'ORG' then
-    j := ' (tipe = ''01'') '
+    j := ' (m.tipe = ''01'') '
   else
   if _u(tipe) = 'UPZ' then
-    j := ' (not (kode in (''00'',''01''))) '
+    j := ' (not (m.tipe in (''00'',''01''))) '
   else
-    j := ' (kode<>''00'') ';
+    j := ' (m.tipe<>''00'') ';
   j := 'select m.npwz, m.nama, (s.nama||'', ''||s.kecamatan) alamat, '+
     'b.uraian jenis, m.kelurahan from baz_muzakki m '+
     'inner join v_kelurahan s on s.kode = m.kelurahan '+

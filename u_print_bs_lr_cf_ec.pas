@@ -106,6 +106,7 @@ type
     procedure frLRPreview(Sender: TObject);
     procedure frCFPreview(Sender: TObject);
     procedure frECPreview(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
     { Private declarations }
     procedure PrintBS;
@@ -160,6 +161,24 @@ var
 begin
   dpBs.Date := Date();
   PageControl1.ActivePageIndex := 0;
+end;
+
+procedure TFPrintBsLrCfEc.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+var
+  c: char;
+  num: integer;
+begin
+  if not ([ssShift] = Shift) then
+    exit;
+  c := chr(key);
+  if not (c in ['1'..'9'])then
+    exit;
+  num := _i(c,0);
+  if not (num in[1..PageControl1.PageCount]) then
+    exit;
+  PageControl1.ActivePageIndex := num-1;
+
 end;
 
 procedure TFPrintBsLrCfEc.frBSPreview(Sender: TObject);

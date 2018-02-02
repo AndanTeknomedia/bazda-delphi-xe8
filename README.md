@@ -90,3 +90,23 @@ Pada source code project dan Stored Procedure, beberapa kode akun (dari Chart Of
 
 Database server menggunakan PostgreSQL 8.4 dengan *akses superuser (postgres)*. 
 Akses superuser diperlukan untuk membuat custom domain.
+
+# Instalasi
+
+## Download SimBaz Executable
+
+Silahkan download SimBaz, executable telah ikut di dalamnya
+
+## Setup Database
+Database menggunakan PostgrSQL 8.4
+
+* Install PostgreSQL 8.4, kemudian login sebagai superuser via pgAdmin
+* Buat database baru, kemudian restore file backup database [%SimBaz%\db\db.backup]
+* Jalankan executable [%SimBaz%\SiBaz.exe]
+* Anda akan diminta mengatur koneksi database. Sesuaikan dengan konfigurasi user dan nama database
+
+## Auto Backup Database
+
+Jalankan [%SimBaz%\backup\exe\mitpgab.exe] kemudian klik Pengaturan untuk mengatur koneksi database dan lokasi folder backup.
+
+Aplikasi ini akan otomatis berjalan di saat masuk Windows. Jika tidak, tambahkan secara manual ke Startup Folder.

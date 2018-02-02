@@ -416,14 +416,6 @@ begin
     QKel.Open
   else
     QKel.Refresh;
-  try
-    if not qUPZ.Active then
-      qUPZ.Open
-    else
-      qUPZ.Refresh;
-    eMuzakki.KeyValue := '';
-  finally
-  end;
 
   if not vtAdd.Active then
     vtAdd.Open;

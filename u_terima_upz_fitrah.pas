@@ -77,16 +77,9 @@ type
     Label3: TLabel;
     dsKel: TDataSource;
     vtAddNPWZ: TStringField;
-    qUPZ: TUniQuery;
-    dsUpz: TDataSource;
-    eUPZ: TDBLookupComboBox;
     eAlamat: TEdit;
-    qUPZjenis: TStringField;
-    qUPZnpwz: TStringField;
-    qUPZnama: TStringField;
-    qUPZalamat: TMemoField;
-    qUPZkelurahan: TStringField;
     vtAddKelurahan: TStringField;
+    eUPZ: TButtonedEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure acCloseExecute(Sender: TObject);
@@ -109,7 +102,7 @@ type
       var Handled: Boolean);
     procedure geDistColumns0EditButtonClick(Sender: TObject;
       var Handled: Boolean);
-    procedure eUPZExit(Sender: TObject);
+    procedure eUPZRightButtonClick(Sender: TObject);
   private
     { Private declarations }
     function sqlSelectVia: String;
@@ -140,7 +133,7 @@ var
   jj: integer;
 begin
   eTanggal.Date := date;
-  eUPZ.KeyValue := '';
+  eUPZ.clear;
   eVia.Clear;
   eAlamat.SetValues('', '');
   eUraian.Clear;
@@ -189,7 +182,7 @@ begin
   if not approvedByAdmin then
     exit;
   // Inform('Start..');
-  if eUPZ.KeyValue = '' then
+  if eUPZ.HiddenText = '' then
   begin
     Warn('UPZ/Perwakilan Muzakki masih kosong.');
     FocusTo(eUPZ);
@@ -215,9 +208,9 @@ begin
     FocusTo(geDist);
     exit;
   end;
-  Kelurahan := qUPZkelurahan.AsString;
+  Kelurahan := eAlamat.HiddenText;
   tglJur := eTanggal.Date;
-  UPZ    := eUPZ.KeyValue;
+  UPZ    := eUPZ.HiddenText;
   Uraian := eUraian.Text;
   RekVia := eVia.HiddenText;
   Randomize;
@@ -242,10 +235,10 @@ begin
     _q(DateToSQL(tglJur))+', '+
     _q('JIZF/'+UPZ)+', '+
     _q('Penerimaan Zakat Fitrah Kolektif dari UPZ: '+UPZ+'/'+
-      qUPZnama.AsString+', Ket.: '+Uraian)+ ', '+
+      eUPZ.Text+', Ket.: '+Uraian)+ ', '+
     _q('UPZF')+', '+
     _q(UPZ)+', '+
-    _q(qUPZnama.AsString)+ ', '+
+    _q(eUPZ.Text)+ ', '+
     _q(InputCode)+
     ') returning kode';
   try
@@ -263,7 +256,7 @@ begin
         QDeturaian.AsString := copy(eVia.Text, 16, length(eVia.Text)-15);
         QDetdebet.AsFloat := jml;
         QDetkredit.AsFloat := 0;
-        QDetnama.AsString := UPZ +' ('+ qUPZnama.AsString +')';
+        QDetnama.AsString := UPZ +' ('+ eUPZ.Text +')';
         try QDet.Post ; except inc(e) end;
       end;
       // insert rekening penerimaan zakat
@@ -378,33 +371,24 @@ begin
   sl.Free;
 end;
 
-procedure TFTerimaUPZFitrah.eUPZExit(Sender: TObject);
+procedure TFTerimaUPZFitrah.eUPZRightButtonClick(Sender: TObject);
 var
-  kd: string;
+  sl: TStringList;
+  b: TButtonedEdit;
 begin
-  kd := qUPZnpwz.AsString;
-  // inform(qUPZalamat.AsString+#13+qUPZkelurahan.AsString);
-  if kd = 'BARU' then
+  b := TButtonedEdit(Sender);
+  sl := FMain.PilihMuzaki('UPZ');
+  if sl.Count>0 then
   begin
-    kd := InputMuzakiBaru('UPZ');
-    if kd<>'' then
-    begin
-      qUPZ.Refresh;
-      if qUPZ.Locate('npwz',kd, [loCaseInsensitive]) then
-      begin
-        eAlamat.Text := qUPZalamat.AsString;
-        eAlamat.HiddenText := qUPZkelurahan.AsString;
-      end;
-    end;
+    b.SetValues(sl[1], sl[0]);
+    eAlamat.SetValues(sl[2], sl[4]);
   end
   else
   begin
-    if qUPZ.Locate('npwz',kd, [loCaseInsensitive]) then
-    begin
-      eAlamat.Text := qUPZalamat.AsString;
-      eAlamat.HiddenText := qUPZkelurahan.AsString;
-    end;
+    b.Clear;
+    eAlamat.Clear;
   end;
+  sl.Free;
 end;
 
 procedure TFTerimaUPZFitrah.eViaRightButtonClick(Sender: TObject);
@@ -446,16 +430,7 @@ begin
     QKel.Open
   else
     QKel.Refresh;
-  qUPZ.AfterScroll := nil;
-  try
-    if not qUPZ.Active then
-      qUPZ.Open
-    else
-      qUPZ.Refresh;
-    eUPZ.KeyValue := '';
-  finally
-    qUPZ.AfterScroll := qUPZAfterScroll;
-  end;
+
   if not vtAdd.Active then
     vtAdd.Open;
   if vtDist.Active then

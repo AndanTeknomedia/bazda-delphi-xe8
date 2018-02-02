@@ -320,10 +320,6 @@ object FTerimaUPZNonFitrah: TFTerimaUPZNonFitrah
       TabOrder = 0
       object TabSheet1: TTabSheet
         Caption = 'Rincian Penerimaan Zakat Fitrah'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object geAdd: TDBGridEh
           Left = 0
           Top = 0
@@ -610,18 +606,6 @@ object FTerimaUPZNonFitrah: TFTerimaUPZNonFitrah
       TabOrder = 4
       OnRightButtonClick = eViaRightButtonClick
     end
-    object eUPZ: TDBLookupComboBox
-      Left = 93
-      Top = 49
-      Width = 501
-      Height = 21
-      KeyField = 'npwz'
-      ListField = 'npwz;nama'
-      ListFieldIndex = 1
-      ListSource = dsUpz
-      TabOrder = 1
-      OnExit = eUPZExit
-    end
     object eAlamat: TEdit
       Left = 92
       Top = 72
@@ -667,6 +651,15 @@ object FTerimaUPZNonFitrah: TFTerimaUPZNonFitrah
         TabOrder = 0
         DecimalPlacesAlwaysShown = False
       end
+    end
+    object eUPZ: TButtonedEdit
+      Left = 92
+      Top = 49
+      Width = 501
+      Height = 21
+      ReadOnly = True
+      TabOrder = 1
+      OnRightButtonClick = eUPZRightButtonClick
     end
   end
   object ActionManager1: TActionManager
@@ -750,8 +743,8 @@ object FTerimaUPZNonFitrah: TFTerimaUPZNonFitrah
     Options = [voPersistentData, voStored, voSkipUnSupportedFieldTypes]
     AfterPost = vtAddAfterPost
     AfterDelete = vtAddAfterPost
-    Left = 213
-    Top = 111
+    Left = 273
+    Top = 187
     Data = {03000000000000000000}
     object vtAddNama: TStringField
       FieldName = 'Nama'
@@ -889,56 +882,5 @@ object FTerimaUPZNonFitrah: TFTerimaUPZNonFitrah
     DataSet = QKel
     Left = 376
     Top = 92
-  end
-  object qUPZ: TUniQuery
-    Connection = FMain.Koneksi
-    SQL.Strings = (
-      'with x as('
-      #9'select'
-      
-        #9#9#39'XX'#39'::varchar(100) jenis, '#39'BARU'#39'::varchar(18) npwz, '#39'Tambah UP' +
-        'Z Baru...'#39'::varchar(100) nama,  '#39#39'::text alamat,  '#39#39'::varchar(10' +
-        ') kelurahan '
-      #9'union'
-      
-        #9'select t.uraian jenis, m.npwz, m.nama, (v.nama||'#39', '#39'||v.kecamat' +
-        'an)::text alamat, m.kelurahan from baz_muzakki m '
-      '      inner join baz_jenis_muzakki t on t.kode = m.tipe'
-      '      inner join v_kelurahan v on v.kode = m.kelurahan '
-      '      where (not (m.tipe in ('#39'00'#39', '#39'01'#39'))) '
-      ') select * from x  order by npwz asc')
-    AfterScroll = qUPZAfterScroll
-    Left = 428
-    Top = 120
-    object qUPZjenis: TStringField
-      FieldName = 'jenis'
-      ReadOnly = True
-      Size = 100
-    end
-    object qUPZnpwz: TStringField
-      FieldName = 'npwz'
-      ReadOnly = True
-      Size = 18
-    end
-    object qUPZnama: TStringField
-      FieldName = 'nama'
-      ReadOnly = True
-      Size = 100
-    end
-    object qUPZalamat: TMemoField
-      FieldName = 'alamat'
-      ReadOnly = True
-      BlobType = ftMemo
-    end
-    object qUPZkelurahan: TStringField
-      FieldName = 'kelurahan'
-      ReadOnly = True
-      Size = 10
-    end
-  end
-  object dsUpz: TDataSource
-    DataSet = qUPZ
-    Left = 428
-    Top = 140
   end
 end

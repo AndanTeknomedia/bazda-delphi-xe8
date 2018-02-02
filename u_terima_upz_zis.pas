@@ -77,15 +77,7 @@ type
     Label3: TLabel;
     dsKel: TDataSource;
     vtAddNPWZ: TStringField;
-    qUPZ: TUniQuery;
-    dsUpz: TDataSource;
-    eUPZ: TDBLookupComboBox;
     eAlamat: TEdit;
-    qUPZjenis: TStringField;
-    qUPZnpwz: TStringField;
-    qUPZnama: TStringField;
-    qUPZalamat: TMemoField;
-    qUPZkelurahan: TStringField;
     Label4: TLabel;
     eTerima: TJvCalcEdit;
     Bevel1: TBevel;
@@ -107,6 +99,7 @@ type
     Label15: TLabel;
     Panel3: TPanel;
     geDist: TDBGridEh;
+    eUPZ: TButtonedEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure acCloseExecute(Sender: TObject);
@@ -129,7 +122,7 @@ type
       var Handled: Boolean);
     procedure geDistColumns0EditButtonClick(Sender: TObject;
       var Handled: Boolean);
-    procedure eUPZExit(Sender: TObject);
+    procedure eUPZRightButtonClick(Sender: TObject);
   private
     { Private declarations }
     function sqlSelectVia: String;
@@ -165,7 +158,7 @@ var
   jj: integer;
 begin
   eTanggal.Date := date;
-  eUPZ.KeyValue := '';
+  eUPZ.Clear;
   eVia.Clear;
   eAlamat.SetValues('', '');
   eUraian.Clear;
@@ -206,7 +199,7 @@ begin
   if not approvedByAdmin then
     exit;
   // Inform('Start..');
-  if eUPZ.KeyValue = '' then
+  if eUPZ.HiddenText = '' then
   begin
     Warn('UPZ/Perwakilan Muzakki masih kosong.');
     FocusTo(eUPZ);
@@ -226,9 +219,9 @@ begin
     FocusTo(geAdd);
     exit;
   end;
-  Kelurahan := qUPZkelurahan.AsString;
+  Kelurahan :=  eAlamat.HiddenText;
   tglJur := eTanggal.Date;
-  UPZ    := eUPZ.KeyValue;
+  UPZ    := eUPZ.HiddenText;
   Uraian := eUraian.Text;
   RekVia := eVia.HiddenText;
   Randomize;
@@ -256,10 +249,10 @@ begin
       _q(DateToSQL(tglJur))+', '+
       _q('JIZS/'+UPZ)+', '+
       _q('Penerimaan ZIS Kolektif dari UPZ: '+UPZ+'/'+
-        qUPZnama.AsString+', Ket.: '+Uraian)+ ', '+
+        eUPZ.Text+', Ket.: '+Uraian)+ ', '+
       _q(copy(JenisDana.kode,1,4))+', '+
       _q(UPZ)+', '+
-      _q(qUPZnama.AsString)+ ', '+
+      _q(eUPZ.Text)+ ', '+
       _q(InputCode)+
       ') returning kode';
     try
@@ -275,7 +268,7 @@ begin
           QDeturaian.AsString := copy(eVia.Text, 16, length(eVia.Text)-15);
           QDetdebet.AsFloat := eDisetor.Value;
           QDetkredit.AsFloat := 0;
-          QDetnama.AsString := UPZ +' ('+ qUPZnama.AsString +')';
+          QDetnama.AsString := UPZ +' ('+ eUPZ.Text +')';
           try QDet.Post ; except inc(e) end;
         end;
         // insert rekening penerimaan zakat
@@ -342,10 +335,10 @@ begin
           QDet.Append;
           QDetref_jurnal.AsString := kdjur;
           QDetkode_rek.AsString := FMain.rekPiutangAmilUPZ;
-          QDeturaian.AsString := 'Piutang UPZ '+qUPZnama.AsString+' atas kekurangan setoran.';
+          QDeturaian.AsString := 'Piutang UPZ '+eUPZ.Text+' atas kekurangan setoran.';
           QDetdebet.AsFloat := ePiutang.Value;
           QDetkredit.AsFloat := 0;
-          QDetnama.AsString := UPZ +' ('+ qUPZnama.AsString +')';
+          QDetnama.AsString := UPZ +' ('+ eUPZ.Text +')';
           try QDet.Post ; except inc(e) end;
         end;
         // Hutang kepada UPZ
@@ -354,10 +347,10 @@ begin
           QDet.Append;
           QDetref_jurnal.AsString := kdjur;
           QDetkode_rek.AsString := FMain.rekPiutangAmilUPZ;
-          QDeturaian.AsString := 'Hutang kekurangan Hak Amil UPZ '+qUPZnama.AsString+'.';
+          QDeturaian.AsString := 'Hutang kekurangan Hak Amil UPZ '+eUPZ.Text+'.';
           QDetdebet.AsFloat := 0;
           QDetkredit.AsFloat := eUtang.Value;
-          QDetnama.AsString := UPZ +' ('+ qUPZnama.AsString +')';
+          QDetnama.AsString := UPZ +' ('+ eUPZ.Text +')';
           try QDet.Post ; except inc(e) end;
         end;
         if eAmilBaznas.Value<>0 then
@@ -443,49 +436,32 @@ begin
   sl.Free;
 end;
 
-procedure TFTerimaUPZNonFitrah.eUPZExit(Sender: TObject);
+procedure TFTerimaUPZNonFitrah.eUPZRightButtonClick(Sender: TObject);
 var
-  kd: string;
+  sl: TStringList;
+  b: TButtonedEdit;
 begin
-  kd := qUPZnpwz.AsString;
-  // inform(qUPZalamat.AsString+#13+qUPZkelurahan.AsString);
-  if kd = 'BARU' then
+  b := TButtonedEdit(Sender);
+  sl := FMain.PilihMuzaki('UPZ');
+  if sl.Count>0 then
   begin
-    kd := InputMuzakiBaru('UPZ');
-    if kd<>'' then
+    b.SetValues(sl[1], sl[0]);
+    eAlamat.SetValues(sl[2], sl[4]);
+    UPZBolehMenyalurkan := 'Y' = ExecSQLAndFetchOneValueAsString('select coalesce((select hak_salur from baz_muzakki where npwz = '+_q(sl[0])+'),''N'')');
+    if UPZBolehMenyalurkan then
+      geDist.Visible := true
+    else
     begin
-      qUPZ.Refresh;
-      if qUPZ.Locate('npwz',kd, [loCaseInsensitive]) then
-      begin
-        eAlamat.Text := qUPZalamat.AsString;
-        eAlamat.HiddenText := qUPZkelurahan.AsString;
-        UPZBolehMenyalurkan := 'Y' = ExecSQLAndFetchOneValueAsString('select coalesce((select hak_salur from baz_muzakki where npwz = '+_q(kd)+'),''N'')');
-        if UPZBolehMenyalurkan then
-          geDist.Visible := true
-        else
-        begin
-          geDist.Visible := false;
-          EmptyDataset(vtDist);
-        end;
-      end;
+      geDist.Visible := false;
+      EmptyDataset(vtDist);
     end;
   end
   else
   begin
-    if qUPZ.Locate('npwz',kd, [loCaseInsensitive]) then
-    begin
-      eAlamat.Text := qUPZalamat.AsString;
-      eAlamat.HiddenText := qUPZkelurahan.AsString;
-      UPZBolehMenyalurkan := 'Y' = ExecSQLAndFetchOneValueAsString('select coalesce((select hak_salur from baz_muzakki where npwz = '+_q(kd)+'),''N'')');
-      if UPZBolehMenyalurkan then
-          geDist.Visible := true
-        else
-        begin
-          geDist.Visible := false;
-          EmptyDataset(vtDist);
-        end;
-    end;
+    b.Clear;
+    eAlamat.Clear;
   end;
+  sl.Free;
 end;
 
 procedure TFTerimaUPZNonFitrah.eViaRightButtonClick(Sender: TObject);
@@ -615,17 +591,6 @@ begin
     QKel.Open
   else
     QKel.Refresh;
-  qUPZ.AfterScroll := nil;
-  try
-    if not qUPZ.Active then
-      qUPZ.Open
-    else
-      qUPZ.Refresh;
-    eUPZ.KeyValue := '';
-  finally
-    qUPZ.AfterScroll := qUPZAfterScroll;
-  end;
-
   q := Query;
   // generate rekening penerimaan:
   if vtAdd.Active then
