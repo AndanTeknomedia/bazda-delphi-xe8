@@ -312,7 +312,7 @@ object FTerimaUPZNonFitrah: TFTerimaUPZNonFitrah
       Top = 0
       Width = 908
       Height = 210
-      ActivePage = TabSheet2
+      ActivePage = TabSheet1
       Align = alClient
       ParentShowHint = False
       ShowHint = False

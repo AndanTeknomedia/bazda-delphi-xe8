@@ -62,6 +62,11 @@ var
   t: String;
 begin
   result := '';
+  if not CurrentUser.Accessible('Menambah Muzaki/UPZ') then
+  begin
+    Inform('Anda tidak memiliki Akses.'#13'Akses diperlukan:'#13'* Menginput Muzaki/UPZ');
+    exit;
+  end;
   t := _u(Tipe);
   form := TFNewMuzaki.Create(Application);
   with form do

@@ -119,6 +119,8 @@ type
     PersentaseBagianAmil1: TMenuItem;
     Mustahuk1: TMenuItem;
     NeracaSaldo1: TMenuItem;
+    SaldoDana1: TMenuItem;
+    MiIkhtisarSaldo: TMenuItem;
     procedure pmTitleClick(Sender: TObject);
     procedure pmMinimizeClick(Sender: TObject);
     procedure pmRestoreClick(Sender: TObject);
@@ -162,6 +164,7 @@ type
     procedure PersentaseBagianAmil1Click(Sender: TObject);
     procedure Mustahuk1Click(Sender: TObject);
     procedure NeracaSaldo1Click(Sender: TObject);
+    procedure MiIkhtisarSaldoClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -234,7 +237,7 @@ uses u_display_text, ui_utils, u_select_kode_name, u_select_master_detail, u_gl,
   u_jurnal_kas, u_jurnal_bank, u_coa, u_koneksi, u_terima_zis,
   u_salur_zis, u_salur_non_zis, u_terima_upz_fitrah, u_user_akses,
   u_terima_upz_zis, u_setting_persentase_bagian_amil, u_new_mustahik,
-  u_new_muzaki, u_upz, u_neraca_saldo;
+  u_new_muzaki, u_upz, u_neraca_saldo, u_muzaki;
 
 {$R *.dfm}
 
@@ -348,11 +351,12 @@ end;
 
 procedure TFMain.Muzakki1Click(Sender: TObject);
 begin
-  if not CurrentUser.Accessible('Mengakses Data Muzakki') then
+  if not CurrentUser.Accessible('Mengakses Data Muzaki') then
   begin
-    Inform('Anda tidak memiliki Akses.'#13'Akses diperlukan:'#13'* Mengakses Data Muzakki');
+    Inform('Anda tidak memiliki Akses.'#13'Akses diperlukan:'#13'* Mengakses Data Muzaki');
     exit;
   end;
+  AddChildForm(TFMuzaki.Create(Application));
 end;
 
 procedure TFMain.NeracaSaldo1Click(Sender: TObject);
@@ -915,6 +919,11 @@ begin
     else
       TMDIButtonGroup(Sender).Items[i].ImageIndex := 2;
   end;
+end;
+
+procedure TFMain.MiIkhtisarSaldoClick(Sender: TObject);
+begin
+  //
 end;
 
 procedure TFMain.OnReportCreated(Sender: TObject);

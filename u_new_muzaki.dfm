@@ -166,9 +166,6 @@ object FNewMuzaki: TFNewMuzaki
     Caption = 'Panel1'
     ShowCaption = False
     TabOrder = 8
-    ExplicitLeft = 372
-    ExplicitTop = 260
-    ExplicitWidth = 185
     object Bevel1: TBevel
       Left = 0
       Top = 0

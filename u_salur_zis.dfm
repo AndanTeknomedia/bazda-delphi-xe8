@@ -347,8 +347,9 @@ object FSalurZis: TFSalurZis
     Top = 275
     Data = {03000000000000000000}
     object vtAddNPWZ: TStringField
+      DisplayWidth = 18
       FieldName = 'NPWZ'
-      Size = 15
+      Size = 18
     end
     object vtAddNama: TStringField
       FieldName = 'Nama'

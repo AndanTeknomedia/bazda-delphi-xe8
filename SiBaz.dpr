@@ -89,7 +89,8 @@ uses
   u_setting_persentase_bagian_amil in 'u_setting_persentase_bagian_amil.pas' {FSettingPersentaseBagianAmil},
   u_terima_zis in 'u_terima_zis.pas' {FTerimaZIS},
   u_upz in 'u_upz.pas' {FUPZ},
-  u_neraca_saldo in 'u_neraca_saldo.pas' {FNeracaSaldo};
+  u_neraca_saldo in 'u_neraca_saldo.pas' {FNeracaSaldo},
+  u_muzaki in 'u_muzaki.pas' {FMuzaki};
 
 {$R *.res}
 

@@ -169,8 +169,10 @@ begin
   vtAdd.First;
   // Inform(vtAdd.FieldCount.ToString());
   // Inform(vtAdd.FieldDefs.Count.ToString());
+
   while not vtAdd.Eof do
   begin
+    NPWM := vtAddNPWZ.AsString;
     sjur := 'INSERT INTO acc_jurnal_u( '+
       'jenis_jurnal, branch_kode, '+
       'tahun, user_id, ref_table, ref_kode, '+

@@ -585,7 +585,6 @@ begin
   PageControl1.Pages[1].Caption := 'Rincian '+JenisSalur.Rekening;
   
   eTanggal.Date := Date();
-  acNew.Execute;
   PageControl1.ActivePageIndex := 0;
   if not QKel.Active then
     QKel.Open
