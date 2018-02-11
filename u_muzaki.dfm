@@ -134,6 +134,26 @@ object FMuzaki: TFMuzaki
       Font.Style = [fsBold]
       ParentFont = False
     end
+    object Label6: TLabel
+      Left = 472
+      Top = 50
+      Width = 233
+      Height = 13
+      Caption = '* Hanya muzaki yang menyetor langsung ke BAZ'
+    end
+    object lblChanged: TLabel
+      Left = 472
+      Top = 26
+      Width = 253
+      Height = 13
+      Caption = 'Refresh untuk menampilkan perubahan data'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clRed
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
     object dpStart: TDateTimePicker
       Left = 364
       Top = 22
@@ -272,6 +292,12 @@ object FMuzaki: TFMuzaki
             ShortCut = 116
           end
           item
+            Action = acAdd
+            Caption = '&Muzaki Baru...'
+            ImageIndex = 74
+            ShortCut = 45
+          end
+          item
             Caption = '-'
           end
           item
@@ -287,7 +313,7 @@ object FMuzaki: TFMuzaki
           end
           item
             Action = acPrintReport
-            Caption = 'Pr&int Laporan'
+            Caption = 'Pr&int Laporan '#187' Excel'
             ImageIndex = 89
             ShortCut = 24656
           end>
@@ -295,7 +321,7 @@ object FMuzaki: TFMuzaki
       end>
     Images = FMain.ilWin
     Left = 228
-    Top = 288
+    Top = 292
     StyleName = 'Platform Default'
     object acClose: TAction
       Caption = 'Close'
@@ -316,7 +342,7 @@ object FMuzaki: TFMuzaki
       OnExecute = acPrintNPWZExecute
     end
     object acPrintReport: TAction
-      Caption = 'Print Laporan'
+      Caption = 'Print Laporan '#187' Excel'
       ImageIndex = 89
       ShortCut = 24656
       OnExecute = acPrintReportExecute
@@ -325,6 +351,12 @@ object FMuzaki: TFMuzaki
       Caption = 'Detail...'
       ImageIndex = 81
       OnExecute = acDetailExecute
+    end
+    object acAdd: TAction
+      Caption = 'Muzaki Baru...'
+      ImageIndex = 74
+      ShortCut = 45
+      OnExecute = acAddExecute
     end
   end
   object frxReport1: TfrxReport
@@ -350,6 +382,9 @@ object FMuzaki: TFMuzaki
     Top = 284
     object DetailJurnal1: TMenuItem
       Action = acDetail
+    end
+    object MuzakiBaru1: TMenuItem
+      Action = acAdd
     end
   end
   object vtMzk: TVirtualTable

@@ -285,16 +285,32 @@
             <Form>FTerimaZIS</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="u_upz.pas">
-            <Form>FUPZ</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="u_neraca_saldo.pas">
             <Form>FNeracaSaldo</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="u_muzaki.pas">
             <Form>FMuzaki</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="libs\uexch.pas">
+            <Form>FExceptionH</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="u_mustahik.pas">
+            <Form>FMustahik</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="u_upz.pas">
+            <Form>FUPZ</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="u_new_mustahik_ex.pas">
+            <Form>FNewMustahikEx</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="u_new_muzaki_ex.pas">
+            <Form>FNewMuzakiEx</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Debug">
@@ -689,9 +705,9 @@
                 <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
-                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME)"/>
             </Deployment>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>

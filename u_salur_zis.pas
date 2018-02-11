@@ -220,6 +220,7 @@ begin
               QDetdebet.AsFloat := geRek.Columns[i].Field.AsFloat;
               QDetkredit.AsFloat := 0;
               QDetnama.AsString := vtAddNama.AsString;
+              QDetref_kode.AsString := NPWM;
               try QDet.Post ; except inc(e) end;
             end;
           end;

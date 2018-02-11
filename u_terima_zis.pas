@@ -234,6 +234,7 @@ begin
             QDetdebet.AsFloat := 0;
             QDetkredit.AsFloat := vtAddJumlah.AsFloat;
             QDetnama.AsString := NPWZ +' ('+ qUPZnama.AsString +')';
+            QDetref_kode.AsString := NPWZ;
             try QDet.Post ; except inc(e) end;
           end;
           vtAdd.Next;

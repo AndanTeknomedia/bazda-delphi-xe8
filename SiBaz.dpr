@@ -1,5 +1,7 @@
 program SiBaz;
 
+
+
 uses
   Windows,
   SysUtils,
@@ -88,9 +90,13 @@ uses
   u_terima_upz_fitrah in 'u_terima_upz_fitrah.pas' {FTerimaUPZFitrah},
   u_setting_persentase_bagian_amil in 'u_setting_persentase_bagian_amil.pas' {FSettingPersentaseBagianAmil},
   u_terima_zis in 'u_terima_zis.pas' {FTerimaZIS},
-  u_upz in 'u_upz.pas' {FUPZ},
   u_neraca_saldo in 'u_neraca_saldo.pas' {FNeracaSaldo},
-  u_muzaki in 'u_muzaki.pas' {FMuzaki};
+  u_muzaki in 'u_muzaki.pas' {FMuzaki},
+  uexch in 'libs\uexch.pas' {FExceptionH},
+  u_mustahik in 'u_mustahik.pas' {FMustahik},
+  u_upz in 'u_upz.pas' {FUPZ},
+  u_new_mustahik_ex in 'u_new_mustahik_ex.pas' {FNewMustahikEx},
+  u_new_muzaki_ex in 'u_new_muzaki_ex.pas' {FNewMuzakiEx};
 
 {$R *.res}
 

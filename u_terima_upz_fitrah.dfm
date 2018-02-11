@@ -238,6 +238,10 @@ object FTerimaUPZFitrah: TFTerimaUPZFitrah
       object TabSheet2: TTabSheet
         Caption = 'Rincian Penyaluran Zakat Fitrah'
         ImageIndex = 1
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object geDist: TDBGridEh
           Left = 0
           Top = 0

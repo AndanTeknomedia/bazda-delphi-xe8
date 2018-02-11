@@ -278,6 +278,7 @@ begin
         QDetdebet.AsFloat := 0;
         QDetkredit.AsFloat := vtAddJumlahZakatFitrah.AsFloat;
         QDetnama.AsString := NPWZ +' ('+ vtAddNama.AsString +')';
+        QDetref_kode.AsString := NPWZ;
         try QDet.Post ; except inc(e) end;
         vtAdd.Next;
       end;
@@ -307,6 +308,7 @@ begin
             QDetdebet.AsFloat := geDist.Columns[i].Field.AsFloat;
             QDetkredit.AsFloat := 0;
             QDetnama.AsString := vtDistNama.AsString;
+            QDetref_kode.AsString := npm;
             try QDet.Post ; except inc(e) end;
           end;
         end;

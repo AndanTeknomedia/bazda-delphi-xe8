@@ -604,7 +604,10 @@ function OpenWordFile(WordFile: String; var WordApp, WordDoc: OleVariant): Boole
 function WordShowReport(WordFile: String; ShowAsPreview: Boolean = false): boolean; overload;
 function WordShowReport(WordDoc, WordApp: OleVariant; ShowAsPreview: Boolean = false): boolean; overload;
 function WordCombineFiles(AFile1, Afile2, AOutputFile: String; const UsePageBreak: Boolean = true): Boolean;
+
 function ExcelShowReport(ExcelFile: String; ShowAsPreview: Boolean = false): boolean;
+function ExcelMergeCells(WorkSheet: OleVariant; RangeStr: String): {Return Range} OleVariant;
+function ExcelMergeAndCenter(WorkSheet: OleVariant; RangeStr:String): {Returns Range} OleVariant;
 
 var
   OldDecimalSeparator,
@@ -986,6 +989,18 @@ begin
 
   end;
 end;
+
+function ExcelMergeCells;
+begin
+  Result := WorkSheet.range[RangeStr];
+  Result.merge;
+end;
+function ExcelMergeAndCenter;
+begin
+  Result := ExcelMergeCells(WorkSheet, RangeStr);
+  Result.HorizontalAlignment := xlHAlignCenter;
+  Result.VerticalAlignment := xlVAlignCenter;
+ end;
 
 function WordCombineFiles;
 const
@@ -1450,28 +1465,35 @@ begin
 end;
 
 function TempFile(const BasePath: String = ''; const Ext: String = '.tmp'): String;
+var
+  s: string;
 begin
+  {
   if BasePath = '' then
-    Result := TempPath(False)
+    s := TempPath(False)
   else
   begin
-    Result := BasePath;
-    if not DirectoryExists(Result) then
+    s := BasePath;
+    if not DirectoryExists(s) then
     begin
       try
-        ForceDirectories(Result);
+        ForceDirectories(s);
       except
-        Result := '';
+        s := '';
       end;
     end;
   end;
-  if Result = '' then
+  if s = '' then
     exit;
-  Result := IncludeTrailingPathDelimiter(Result);
+  }
+  s := AppPath()+'\tmp';
+  if not DirectoryExists(s) then
+    ForceDirectories(s);
+  s := IncludeTrailingPathDelimiter(s);
   Randomize;
-  Result := Result + IntToStr(Random(9899))+'~';
+  s := s + IntToStr(Random(9899))+'~';
   Randomize;
-  Result := Result + IntToStr(Random(765)) + Ext;
+  Result := s + IntToStr(Random(765)) + Ext;
 end;
 
 function ListFilesInFolder;
@@ -1484,8 +1506,13 @@ begin
   if FindFirst(p + '\' + FileMask, faAnyFile, sr)<>0 then
     exit;
   repeat
-    if sr.Attr <> faDirectory then
-      Result.Add(p+'\'+sr.Name);
+    if (sr.Attr <> faDirectory) then
+    begin
+      if (sr.Name<>'.') and (sr.Name<>'..') then
+      begin
+        Result.Add(p+'\'+sr.Name);
+      end;
+    end;
   until FindNext(sr)<>0;
   FindClose(sr);
 end;

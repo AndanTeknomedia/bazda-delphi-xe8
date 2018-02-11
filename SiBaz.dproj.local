@@ -2,8 +2,8 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2017/04/13 15:23:06.000.264,=C:\xeroxl\UniServerZ\vhosts\jamkridasulsel\desktop-utils\print\Unit2.pas</Transaction>
-    <Transaction>2017/04/13 15:23:26.000.637,C:\xeroxl\UniServerZ\vhosts\jamkridasulsel\desktop-utils\print\Unit2.dfm=C:\xeroxl\UniServerZ\vhosts\jamkridasulsel\desktop-utils\print\u_new_penerima_jaminan.dfm</Transaction>
     <Transaction>2017/04/13 15:23:26.000.637,C:\xeroxl\UniServerZ\vhosts\jamkridasulsel\desktop-utils\print\Unit2.pas=C:\xeroxl\UniServerZ\vhosts\jamkridasulsel\desktop-utils\print\u_new_penerima_jaminan.pas</Transaction>
+    <Transaction>2017/04/13 15:23:26.000.637,C:\xeroxl\UniServerZ\vhosts\jamkridasulsel\desktop-utils\print\Unit2.dfm=C:\xeroxl\UniServerZ\vhosts\jamkridasulsel\desktop-utils\print\u_new_penerima_jaminan.dfm</Transaction>
     <Transaction>2017/04/17 22:03:07.000.348,=C:\xeroxl\UniServerZ\vhosts\jamkridasulsel\desktop-utils\print\u_penjaminan_all.pas</Transaction>
     <Transaction>2017/04/24 15:50:03.000.636,=C:\xeroxl\UniServerZ\vhosts\jamkridasulsel\desktop-utils\print\u_new_cg.pas</Transaction>
     <Transaction>2017/04/29 20:39:54.000.020,=C:\xeroxl\UniServerZ\vhosts\jamkridasulsel\desktop-utils\print\u_param_pjk.pas</Transaction>
@@ -46,36 +46,36 @@
     <Transaction>2017/10/26 19:38:10.000.589,C:\xeroxl\UniServerZ\vhosts\jamkridasulsel\desktop-utils\print\Unit2.dfm=C:\xeroxl\UniServerZ\vhosts\jamkridasulsel\desktop-utils\print\uSetLocale.dfm</Transaction>
     <Transaction>2017/10/26 19:38:10.000.589,C:\xeroxl\UniServerZ\vhosts\jamkridasulsel\desktop-utils\print\Unit2.pas=C:\xeroxl\UniServerZ\vhosts\jamkridasulsel\desktop-utils\print\uSetLocale.pas</Transaction>
     <Transaction>2017/11/09 18:16:16.000.324,E:\Projects\Adesal Zakat\Src\PJSSPrinter.dproj=E:\Projects\Adesal Zakat\Src\SiBaz.dproj</Transaction>
+    <Transaction>2017/11/09 18:28:56.000.788,E:\Projects\Adesal Zakat\Src\u_new_cg.pas=</Transaction>
     <Transaction>2017/11/09 18:28:56.000.823,E:\Projects\Adesal Zakat\Src\u_new_sb.pas=</Transaction>
+    <Transaction>2017/11/09 18:28:56.000.853,E:\Projects\Adesal Zakat\Src\u_verifikasi_cg.pas=</Transaction>
+    <Transaction>2017/11/09 18:28:56.000.831,E:\Projects\Adesal Zakat\Src\u_penjaminan_all.pas=</Transaction>
     <Transaction>2017/11/09 18:28:56.000.860,E:\Projects\Adesal Zakat\Src\u_verifikasi_cr.pas=</Transaction>
     <Transaction>2017/11/09 18:28:56.000.846,E:\Projects\Adesal Zakat\Src\u_run_akrual.pas=</Transaction>
-    <Transaction>2017/11/09 18:28:56.000.838,E:\Projects\Adesal Zakat\Src\u_penjaminan_report.pas=</Transaction>
     <Transaction>2017/11/09 18:28:56.000.816,E:\Projects\Adesal Zakat\Src\u_new_permintaan_barang.pas=</Transaction>
-    <Transaction>2017/11/09 18:28:56.000.808,E:\Projects\Adesal Zakat\Src\u_new_penerima_jaminan.pas=</Transaction>
-    <Transaction>2017/11/09 18:28:56.000.853,E:\Projects\Adesal Zakat\Src\u_verifikasi_cg.pas=</Transaction>
     <Transaction>2017/11/09 18:28:56.000.800,E:\Projects\Adesal Zakat\Src\u_new_cr.pas=</Transaction>
-    <Transaction>2017/11/09 18:28:56.000.831,E:\Projects\Adesal Zakat\Src\u_penjaminan_all.pas=</Transaction>
-    <Transaction>2017/11/09 18:28:56.000.788,E:\Projects\Adesal Zakat\Src\u_new_cg.pas=</Transaction>
+    <Transaction>2017/11/09 18:28:56.000.808,E:\Projects\Adesal Zakat\Src\u_new_penerima_jaminan.pas=</Transaction>
+    <Transaction>2017/11/09 18:28:56.000.838,E:\Projects\Adesal Zakat\Src\u_penjaminan_report.pas=</Transaction>
     <Transaction>2017/11/09 18:28:56.000.867,E:\Projects\Adesal Zakat\Src\u_verifikasi_penjaminan.pas=</Transaction>
     <Transaction>2017/11/09 18:44:33.000.434,=E:\Projects\Adesal Zakat\Src\Unit2.pas</Transaction>
-    <Transaction>2017/11/09 18:44:39.000.552,E:\Projects\Adesal Zakat\Src\u_koneksi.dfm=E:\Projects\Adesal Zakat\Src\Unit2.dfm</Transaction>
     <Transaction>2017/11/09 18:44:39.000.552,E:\Projects\Adesal Zakat\Src\u_koneksi.pas=E:\Projects\Adesal Zakat\Src\Unit2.pas</Transaction>
+    <Transaction>2017/11/09 18:44:39.000.552,E:\Projects\Adesal Zakat\Src\u_koneksi.dfm=E:\Projects\Adesal Zakat\Src\Unit2.dfm</Transaction>
     <Transaction>2017/12/28 14:00:07.000.931,=E:\Projects\Baz\Src\u_terima_zis.pas</Transaction>
     <Transaction>2017/12/28 20:02:59.000.141,=E:\Projects\Baz\Src\u_terima_zis_kol.pas</Transaction>
     <Transaction>2018/01/01 17:43:21.000.079,=E:\Projects\Baz\Src\Unit2.pas</Transaction>
     <Transaction>2018/01/05 18:23:35.000.155,=E:\Projects\Baz\Src\u_salur_zis.pas</Transaction>
-    <Transaction>2018/01/05 18:26:13.000.316,E:\Projects\Baz\Src\u_salur_non_zis.pas=E:\Projects\Baz\Src\u_salur_zis.pas</Transaction>
     <Transaction>2018/01/05 18:26:13.000.316,E:\Projects\Baz\Src\u_salur_non_zis.dfm=E:\Projects\Baz\Src\u_salur_zis.dfm</Transaction>
+    <Transaction>2018/01/05 18:26:13.000.316,E:\Projects\Baz\Src\u_salur_non_zis.pas=E:\Projects\Baz\Src\u_salur_zis.pas</Transaction>
     <Transaction>2018/01/05 18:27:53.000.573,=E:\Projects\Baz\Src\u_salur_zis.pas</Transaction>
     <Transaction>2018/01/06 17:03:47.000.527,=E:\Projects\Baz\Src\Unit2.pas</Transaction>
-    <Transaction>2018/01/06 17:07:37.000.678,E:\Projects\Baz\Src\u_get_jenis_distribusi_dana.pas=E:\Projects\Baz\Src\Unit2.pas</Transaction>
     <Transaction>2018/01/06 17:07:37.000.678,E:\Projects\Baz\Src\u_get_jenis_distribusi_dana.dfm=E:\Projects\Baz\Src\Unit2.dfm</Transaction>
+    <Transaction>2018/01/06 17:07:37.000.678,E:\Projects\Baz\Src\u_get_jenis_distribusi_dana.pas=E:\Projects\Baz\Src\Unit2.pas</Transaction>
     <Transaction>2018/01/09 16:46:02.000.835,=E:\Projects\Baz\Src\u_terima_zakat_fitrah.pas</Transaction>
     <Transaction>2018/01/10 21:10:16.000.820,=E:\Projects\Baz\Src\libs\u_user_akses.pas</Transaction>
     <Transaction>2018/01/11 23:50:44.000.238,=E:\Projects\Baz\Src\libs\u_edit_user.pas</Transaction>
     <Transaction>2018/01/16 18:35:48.000.906,=E:\Projects\Baz\Src\Unit2.pas</Transaction>
-    <Transaction>2018/01/16 18:35:56.000.623,E:\Projects\Baz\Src\u_new_muzaki.pas=E:\Projects\Baz\Src\Unit2.pas</Transaction>
     <Transaction>2018/01/16 18:35:56.000.623,E:\Projects\Baz\Src\u_new_muzaki.dfm=E:\Projects\Baz\Src\Unit2.dfm</Transaction>
+    <Transaction>2018/01/16 18:35:56.000.623,E:\Projects\Baz\Src\u_new_muzaki.pas=E:\Projects\Baz\Src\Unit2.pas</Transaction>
     <Transaction>2018/01/16 23:30:37.000.140,=E:\Projects\Baz\Src\u_new_mustahik.pas</Transaction>
     <Transaction>2018/01/17 16:32:46.000.239,=E:\Projects\Baz\Src\u_terima_upz_zis.pas</Transaction>
     <Transaction>2018/01/17 16:34:15.000.203,=E:\Projects\Baz\Src\u_terima_upz_fitrah.pas</Transaction>
@@ -84,6 +84,12 @@
     <Transaction>2018/01/17 17:02:47.000.725,E:\Projects\Baz\Src\u_setting_persentase_bagian_amil.dfm=E:\Projects\Baz\Src\Unit2.dfm</Transaction>
     <Transaction>2018/01/23 22:38:54.000.378,=E:\Projects\Baz\Src\u_upz.pas</Transaction>
     <Transaction>2018/01/25 19:26:43.000.497,=E:\Projects\Baz\Src\u_neraca_saldo.pas</Transaction>
-    <Transaction>2018/02/03 21:12:37.833,=E:\Projects\Baz\Src\u_muzaki.pas</Transaction>
+    <Transaction>2018/02/03 21:12:37.000.833,=E:\Projects\Baz\Src\u_muzaki.pas</Transaction>
+    <Transaction>2018/02/05 23:56:21.000.004,=E:\Projects\Baz\Src\libs\uexch.pas</Transaction>
+    <Transaction>2018/02/08 15:52:22.000.335,=E:\Projects\Baz\Src\u_mustahik.pas</Transaction>
+    <Transaction>2018/02/08 16:17:35.000.644,E:\Projects\Baz\Src\u_upz.pas=</Transaction>
+    <Transaction>2018/02/08 16:18:54.000.701,=E:\Projects\Baz\Src\u_upz.pas</Transaction>
+    <Transaction>2018/02/11 18:17:44.601,=E:\Projects\Baz\Src\u_new_mustahik_ex.pas</Transaction>
+    <Transaction>2018/02/11 18:17:44.782,=E:\Projects\Baz\Src\u_new_muzaki_ex.pas</Transaction>
   </Transactions>
 </BorlandProject>

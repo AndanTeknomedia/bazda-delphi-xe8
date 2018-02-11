@@ -165,6 +165,7 @@ type
     procedure Mustahuk1Click(Sender: TObject);
     procedure NeracaSaldo1Click(Sender: TObject);
     procedure MiIkhtisarSaldoClick(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -221,6 +222,8 @@ type
     procedure AddStatus(ASTatus: String);
     procedure EndStatus;
     function _AddMDIReport(Report: TFrxReport; const Title: String): Tform;
+    //
+    procedure AppOnException(Sender: TObject; E: Exception);
   end;
 
 var
@@ -237,7 +240,7 @@ uses u_display_text, ui_utils, u_select_kode_name, u_select_master_detail, u_gl,
   u_jurnal_kas, u_jurnal_bank, u_coa, u_koneksi, u_terima_zis,
   u_salur_zis, u_salur_non_zis, u_terima_upz_fitrah, u_user_akses,
   u_terima_upz_zis, u_setting_persentase_bagian_amil, u_new_mustahik,
-  u_new_muzaki, u_upz, u_neraca_saldo, u_muzaki;
+  u_new_muzaki, u_upz, u_neraca_saldo, u_muzaki, uexch, u_mustahik;
 
 {$R *.dfm}
 
@@ -347,6 +350,7 @@ begin
     Inform('Anda tidak memiliki Akses.'#13'Akses diperlukan:'#13'* Mengakses Data Mustahik');
     exit;
   end;
+  AddChildForm(TFMustahik.Create(Application));
 end;
 
 procedure TFMain.Muzakki1Click(Sender: TObject);
@@ -433,6 +437,11 @@ begin
   JvStatusBar1.Panels[2].Text := ASTatus;
 end;
 
+procedure TFMain.AppOnException(Sender: TObject; E: Exception);
+begin
+  ShowException(Sender, E);
+end;
+
 procedure TFMain.AturKoneksi;
 begin
   with TFKoneksi.Create(Application) do
@@ -464,6 +473,12 @@ end;
 procedure TFMain.Button1Click(Sender: TObject);
 begin
   MsgBoxTimeout('TES', 'hanya test');
+end;
+
+procedure TFMain.Button2Click(Sender: TObject);
+begin
+  Inform(TempFile('', '.xlsx'));
+  Inform(TempFile('', '.xlsx'));
 end;
 
 procedure TFMain.ChartOfAccounts1Click(Sender: TObject);
@@ -513,27 +528,38 @@ end;
 procedure TFMain.deleteTmpReportFiles;
 var
   i: integer;
+  d: string;
 begin
-  Exit;
-  with ListFilesInFolder(ReportsDir, '*.doc*') do
+  d := AppPath()+'\tmp';
+  if not DirectoryExists(d) then
+    exit;
+  with ListFilesInFolder(d, '*.*') do
+  begin
+    for i := 0 to Count-1 do
+      DeleteFile(Strings[i]);
+    Free;
+  end;
+  {
+  with ListFilesInFolder(d, '*.doc*') do
   begin
     // ShowMessage(Text);
     for i := 0 to Count-1 do
       DeleteFile(Strings[i]);
     Free;
   end;
-  with ListFilesInFolder(ReportsDir, '*.xls*') do
+  with ListFilesInFolder(d, '*.xls*') do
   begin
     for i := 0 to Count-1 do
       DeleteFile(Strings[i]);
     Free;
   end;
-  with ListFilesInFolder(ReportsDir, '*.fr3') do
+  with ListFilesInFolder(d, '*.fr3') do
   begin
     for i := 0 to Count-1 do
       DeleteFile(Strings[i]);
     Free;
   end;
+  }
 end;
 
 procedure TFMain.StopProgress;
@@ -609,6 +635,7 @@ procedure TFMain.FormCreate(Sender: TObject);
 var
   bgImg: string;
 begin
+  Application.OnException := AppOnException;
   {
   SettingKoneksi.Host := 'localhost';
   SettingKoneksi.Port := 5432;
