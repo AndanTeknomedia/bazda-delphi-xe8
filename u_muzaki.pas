@@ -113,8 +113,14 @@ begin
 end;
 
 procedure TFMuzaki.acDetailExecute(Sender: TObject);
+var
+  k: String;
 begin
-  //
+  if vtMzk.IsEmpty then
+    exit;
+  k := vtMzkNPWZ.AsString;
+  if EditMuzakiEx(k) then
+    lblChanged.Show;
 end;
 
 procedure TFMuzaki.acPrintNPWZExecute(Sender: TObject);

@@ -102,7 +102,6 @@ procedure TFSalurNonZis.acNewExecute(Sender: TObject);
 var
   jj: integer;
 begin
-  eTanggal.Date := date;
   eBukti.Clear;
   eVia.Clear;
   eUraian.Clear;
@@ -296,6 +295,7 @@ var
   fn: string;
   f: TFieldDef;
 begin
+  eTanggal.Date := date;
   if not vtAdd.Active then
     vtAdd.Open;
   LastJenisDana := GetJenisDistribusiDana(['53','54','55','56','57','58']);
@@ -304,7 +304,6 @@ begin
     Caption := LastJenisDana.vkode+' - '+LastJenisDana.Rekening;
     cap1.Caption := 'Jurnal Penyaluran: '+LastJenisDana.vkode+' - '+LastJenisDana.Rekening;
     Label8.Caption := 'Rincian '+Caption;
-    eTanggal.Date := Date();
     acNew.Execute;
   end
   else

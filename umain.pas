@@ -121,6 +121,7 @@ type
     NeracaSaldo1: TMenuItem;
     SaldoDana1: TMenuItem;
     MiIkhtisarSaldo: TMenuItem;
+    PindahBukuKasBank1: TMenuItem;
     procedure pmTitleClick(Sender: TObject);
     procedure pmMinimizeClick(Sender: TObject);
     procedure pmRestoreClick(Sender: TObject);
@@ -166,6 +167,7 @@ type
     procedure NeracaSaldo1Click(Sender: TObject);
     procedure MiIkhtisarSaldoClick(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure PindahBukuKasBank1Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -183,13 +185,14 @@ type
       rekUtangAmilUPZ   = '21010301';
   var
       BaseKas,
-      BaseBank  : string;
-      SettingKoneksi: TSettingKoneksi;
+      BaseBank            : string;
+      SettingKoneksi      : TSettingKoneksi;
       PersenAmilDanaZakat,
       PersenAmilDanaInfak,
       PersenAmilDanaDSKL,
       PersenAmilDanaCSR,
-      PersenAmilDanaHibah: Double;
+      PersenAmilDanaHibah,
+      PersenAmilDanaAPBD  : Double;
 
     { Public declarations }
     procedure RefreshPersenAmil;
@@ -240,7 +243,8 @@ uses u_display_text, ui_utils, u_select_kode_name, u_select_master_detail, u_gl,
   u_jurnal_kas, u_jurnal_bank, u_coa, u_koneksi, u_terima_zis,
   u_salur_zis, u_salur_non_zis, u_terima_upz_fitrah, u_user_akses,
   u_terima_upz_zis, u_setting_persentase_bagian_amil, u_new_mustahik,
-  u_new_muzaki, u_upz, u_neraca_saldo, u_muzaki, uexch, u_mustahik;
+  u_new_muzaki, u_upz, u_neraca_saldo, u_muzaki, uexch, u_mustahik,
+  u_jurnal_pb_kas_bank;
 
 {$R *.dfm}
 
@@ -477,8 +481,7 @@ end;
 
 procedure TFMain.Button2Click(Sender: TObject);
 begin
-  Inform(TempFile('', '.xlsx'));
-  Inform(TempFile('', '.xlsx'));
+  with MDIButtonGroup1 do autosize := not autosize;
 end;
 
 procedure TFMain.ChartOfAccounts1Click(Sender: TObject);
@@ -1093,6 +1096,16 @@ begin
   );
 end;
 
+procedure TFMain.PindahBukuKasBank1Click(Sender: TObject);
+begin
+  if not AccessibleBy(CurrentUser,'Menginput Jurnal Pindah Buku Kas-Bank') then
+  begin
+    Warn('Anda tidak memiliki akses Menginput Jurnal Pindah Buku Kas-Bank!');
+    exit;
+  end;
+  AddChildForm(TFJurnalPinbukKasBank.Create(Application));
+end;
+
 procedure TFMain.pmCloseAllClick(Sender: TObject);
 begin
   if Ask('Tutup Semua Form?', Handle) = ID_YES then
@@ -1192,6 +1205,7 @@ begin
   PersenAmilDanaDSKL  := _f(GetOption(CurrentUser.KodeCabang+'persen-amil-dskl'),  0.200)*100;
   PersenAmilDanaCSR   := _f(GetOption(CurrentUser.KodeCabang+'persen-amil-csr'),   0.100)*100;
   PersenAmilDanaHibah := _f(GetOption(CurrentUser.KodeCabang+'persen-amil-hibah'), 0.200)*100;
+  PersenAmilDanaAPBD:= _f(GetOption(CurrentUser.KodeCabang+'persen-amil-apbd'), 0.00)*100;
 end;
 
 function TFMain.ReportsDir: String;

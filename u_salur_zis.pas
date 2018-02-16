@@ -100,7 +100,6 @@ procedure TFSalurZis.acNewExecute(Sender: TObject);
 var
   jj: integer;
 begin
-  eTanggal.Date := date;
   eVia.Clear;
   eUraian.Clear;
   EmptyDataset(vtAdd);
@@ -308,6 +307,7 @@ var
   fn: string;
   f: TFieldDef;
 begin
+  eTanggal.Date := date;
   LastJenisDana := GetJenisDistribusiDana(['51','52']);
   if LastJenisDana.kode <> '' then
   begin

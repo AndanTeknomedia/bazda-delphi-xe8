@@ -113,8 +113,14 @@ begin
 end;
 
 procedure TFMustahik.acDetailExecute(Sender: TObject);
+var
+  k: String;
 begin
-  //
+  if vtMzk.IsEmpty then
+    exit;
+  k := vtMzkNPWZ.AsString;
+  if EditMustahikEx(k) then
+    lblChanged.Show;
 end;
 
 procedure TFMustahik.acPrintNPMExecute(Sender: TObject);

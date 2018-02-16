@@ -44,11 +44,13 @@ type
     procedure Button2Click(Sender: TObject);
   private
     { Private declarations }
+    _edit: Boolean;
   public
     { Public declarations }
   end;
 
 function InputMuzakiBaruEx(const Tipe: string = '*'): String {NPWZ};
+function EditMuzakiEx(const NPWZ: String): Boolean;
 
 implementation
 
@@ -72,6 +74,7 @@ begin
   with form do
   begin
     try
+      _edit:= false;
       if not qKel2.Active then
         qKel2.Open;
       if qTipe.Active then
@@ -125,6 +128,72 @@ begin
       free;
     end;
   end;
+end;
+
+function EditMuzakiEx(const NPWZ: String): Boolean;
+var
+  Form: TFNewMuzakiEx;
+  t: String;
+  q: TUniQuery;
+begin
+  result := false;
+  if not CurrentUser.Accessible('Mengedit Muzaki/UPZ') then
+  begin
+    Inform('Anda tidak memiliki Akses.'#13'Akses diperlukan:'#13'* Mengedit Muzaki/UPZ');
+    exit;
+  end;
+  form := TFNewMuzakiEx.Create(Application);
+  with form do
+  begin
+    try
+      _edit:= true;
+      Caption := 'Edit Muzaki/UPZ';
+      if not qKel2.Active then
+        qKel2.Open;
+      if qTipe.Active then
+        qTipe.Close;
+      qTipe.SQL.Text := 'select kode, uraian from baz_jenis_muzakki where kode<>''00'' order by kode asc';
+      qTipe.Open;
+      q := ExecSQL('select * from baz_muzakki where npwz = '+_q(NPWZ));
+      if not q.IsEmpty then
+      begin
+        eTipe.KeyValue := q.FieldByName('tipe').AsString;
+        eTipe.Enabled := true;
+        eNama.text := q.FieldByName('nama').AsString;
+        eKelurahan.KeyValue := q.FieldByName('kelurahan').AsString;
+        eNik.text := q.FieldByName('nik').AsString;
+        eNPWP.text := q.FieldByName('npwp').AsString;
+        eNoKK.text := q.FieldByName('no_kk').AsString;
+        eTelp.text := q.FieldByName('telp').AsString;
+        eAlamat.text := q.FieldByName('alamat').AsString;
+        tag := mrNone;
+        ShowModal;
+        if tag = mrOK then
+        begin
+          q.Edit;
+          q.FieldByName('tipe').AsString      :=  eTipe.KeyValue;
+          q.FieldByName('nama').AsString      :=  eNama.text;
+          q.FieldByName('kelurahan').AsString :=  eKelurahan.KeyValue;
+          q.FieldByName('nik').AsString       :=  eNik.text;
+          q.FieldByName('npwp').AsString      :=  eNPWP.text;
+          q.FieldByName('no_kk').AsString     :=  eNoKK.text;
+          q.FieldByName('telp').AsString      :=  eTelp.text;
+          q.FieldByName('alamat').AsString    :=  eAlamat.text;
+          try q.post; result := true; except result := false; end;
+          if not Result then
+            Deny('Gagal mengupdate Muzaki/UPZ');
+        end;
+      end
+      else
+      begin
+        inform('Data UPZ/Muzaki tidak ditemukan!');
+      end;
+      q.Free;
+    finally
+      free;
+    end;
+  end;
+
 end;
 
 procedure TFNewMuzakiEx.Button1Click(Sender: TObject);

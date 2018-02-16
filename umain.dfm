@@ -14373,11 +14373,11 @@ object FMain: TFMain
         Caption = '-'
       end
       object Penyaluran1: TMenuItem
-        Caption = 'Penyaluran Dana Zis'
+        Caption = 'Penyaluran Dana Zakat && Infak'
         OnClick = Penyaluran1Click
       end
       object PenyaluranOperasional1: TMenuItem
-        Caption = 'Penyaluran Amil, CSR, DSKL'
+        Caption = 'Penyaluran Selain Zakat && Infak'
         OnClick = PenyaluranOperasional1Click
       end
       object N2: TMenuItem
@@ -14392,6 +14392,10 @@ object FMain: TFMain
         Caption = 'Jurnal Bank'
         Visible = False
         OnClick = JurnalBankMainClick
+      end
+      object PindahBukuKasBank1: TMenuItem
+        Caption = 'Pindah Buku Kas-Bank'
+        OnClick = PindahBukuKasBank1Click
       end
       object JurnalUmum1: TMenuItem
         Caption = 'Jurnal Umum'
@@ -14484,7 +14488,7 @@ object FMain: TFMain
     Left = 178
     Top = 90
     Bitmap = {
-      494C01015A002409240910001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01015A003409340910001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000007001000001002000000000000070
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000003736360000000000373636003736

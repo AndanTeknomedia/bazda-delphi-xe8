@@ -42,11 +42,13 @@ type
     procedure Button2Click(Sender: TObject);
   private
     { Private declarations }
+    _edit: Boolean;
   public
     { Public declarations }
   end;
 
 function InputMustahikBaruEx(const Tipe: string = '*'): String {NPM};
+function EditMustahikEx(const NPWM: String): Boolean;
 
 implementation
 
@@ -117,6 +119,69 @@ begin
         if Result = '' then
           Deny('Gagal menambah Mustahik baru...');
       end;
+    finally
+      free;
+    end;
+  end;
+end;
+
+function EditMustahikEx(const NPWM: String): Boolean;
+var
+  Form: TFNewMustahikEx;
+  t: String;
+  q: TUniQuery;
+begin
+  result := false;
+  if not CurrentUser.Accessible('Mengedit Mustahik') then
+  begin
+    Inform('Anda tidak memiliki Akses.'#13'Akses diperlukan:'#13'* Mengedit Mustahik');
+    exit;
+  end;
+  form := TFNewMustahikEx.Create(Application);
+  with form do
+  begin
+    try
+      _edit:= true;
+      Caption := 'Edit Mustahik';
+      if not qKel2.Active then
+        qKel2.Open;
+      if qTipe.Active then
+        qTipe.Close;
+      qTipe.SQL.Text := 'select kode, uraian from baz_jenis_mustahik where kode<>''00'' order by kode asc';
+      qTipe.Open;
+      q := ExecSQL('select * from baz_mustahik where npwm = '+_q(NPWM));
+      if not q.IsEmpty then
+      begin
+        eTipe.KeyValue := q.FieldByName('tipe').AsString;
+        eTipe.Enabled := true;
+        eNama.text := q.FieldByName('nama').AsString;
+        eKelurahan.KeyValue := q.FieldByName('kelurahan').AsString;
+        eNik.text := q.FieldByName('nik').AsString;
+        eNoKK.text := q.FieldByName('no_kk').AsString;
+        eTelp.text := q.FieldByName('telp').AsString;
+        eAlamat.text := q.FieldByName('alamat').AsString;
+        tag := mrNone;
+        ShowModal;
+        if tag = mrOK then
+        begin
+          q.Edit;
+          q.FieldByName('tipe').AsString      :=  eTipe.KeyValue;
+          q.FieldByName('nama').AsString      :=  eNama.text;
+          q.FieldByName('kelurahan').AsString :=  eKelurahan.KeyValue;
+          q.FieldByName('nik').AsString       :=  eNik.text;
+          q.FieldByName('no_kk').AsString     :=  eNoKK.text;
+          q.FieldByName('telp').AsString      :=  eTelp.text;
+          q.FieldByName('alamat').AsString    :=  eAlamat.text;
+          try q.post; result := true; except result := false; end;
+          if not Result then
+            Deny('Gagal mengupdate Mustahik');
+        end;
+      end
+      else
+      begin
+        inform('Data Mustahik tidak ditemukan!');
+      end;
+      q.Free;
     finally
       free;
     end;

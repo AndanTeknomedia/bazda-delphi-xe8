@@ -96,6 +96,7 @@ object FTerimaUPZNonFitrah: TFTerimaUPZNonFitrah
       Align = alBottom
       BevelOuter = bvNone
       Caption = 'Panel1'
+      ParentBackground = False
       ShowCaption = False
       TabOrder = 1
       object Label2: TLabel
@@ -143,9 +144,9 @@ object FTerimaUPZNonFitrah: TFTerimaUPZNonFitrah
       object Label14: TLabel
         Left = 30
         Top = 78
-        Width = 135
+        Width = 134
         Height = 13
-        Caption = 'Sisa - Dipotong Dari Setoran'
+        Caption = 'Sisa - Harus Dibayar Ke UPZ'
       end
       object Label5: TLabel
         Left = 459
@@ -161,18 +162,13 @@ object FTerimaUPZNonFitrah: TFTerimaUPZNonFitrah
         Height = 13
         Caption = 'Utang Amil UPZ Kepada Baznas'
       end
-      object Label15: TLabel
-        Left = 324
-        Top = 78
-        Width = 90
-        Height = 13
-        Caption = 'Diserahkan Ke UPZ'
-      end
       object eDisetor: TJvCalcEdit
         Left = 640
         Top = 6
         Width = 130
         Height = 21
+        TabStop = False
+        Color = 14408667
         DisplayFormat = '#,#0.## ;(#,#0.##) ; '
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
@@ -190,6 +186,8 @@ object FTerimaUPZNonFitrah: TFTerimaUPZNonFitrah
         Top = 6
         Width = 130
         Height = 21
+        TabStop = False
+        Color = 14408667
         DisplayFormat = '#,#0.## ;(#,#0.##) ; '
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clGreen
@@ -214,16 +212,18 @@ object FTerimaUPZNonFitrah: TFTerimaUPZNonFitrah
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        ReadOnly = True
         ShowButton = False
         TabOrder = 4
         DecimalPlacesAlwaysShown = False
+        OnChange = eUPZTerbayarChange
       end
       object eUPZSisa: TJvCalcEdit
         Left = 188
         Top = 75
         Width = 130
         Height = 21
+        TabStop = False
+        Color = 14408667
         DisplayFormat = '#,#0.## ;(#,#0.##) ; '
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
@@ -241,6 +241,8 @@ object FTerimaUPZNonFitrah: TFTerimaUPZNonFitrah
         Top = 29
         Width = 130
         Height = 21
+        TabStop = False
+        Color = 14408667
         DisplayFormat = '#,#0.## ;(#,#0.##) ; '
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clRed
@@ -258,6 +260,8 @@ object FTerimaUPZNonFitrah: TFTerimaUPZNonFitrah
         Top = 29
         Width = 130
         Height = 21
+        TabStop = False
+        Color = 14408667
         DisplayFormat = '#,#0.## ;(#,#0.##) ; '
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
@@ -275,6 +279,7 @@ object FTerimaUPZNonFitrah: TFTerimaUPZNonFitrah
         Top = 52
         Width = 130
         Height = 21
+        TabStop = False
         Color = 10205138
         DisplayFormat = '#,#0.## ;(#,#0.##) ; '
         Font.Charset = DEFAULT_CHARSET
@@ -293,6 +298,7 @@ object FTerimaUPZNonFitrah: TFTerimaUPZNonFitrah
         Top = 75
         Width = 130
         Height = 21
+        TabStop = False
         Color = 10407866
         DisplayFormat = '#,#0.## ;(#,#0.##) ; '
         Font.Charset = DEFAULT_CHARSET
@@ -307,223 +313,95 @@ object FTerimaUPZNonFitrah: TFTerimaUPZNonFitrah
         DecimalPlacesAlwaysShown = False
       end
     end
-    object PageControl1: TPageControl
+    object geAdd: TDBGridEh
       Left = 0
       Top = 0
       Width = 908
       Height = 210
-      ActivePage = TabSheet1
       Align = alClient
-      ParentShowHint = False
-      ShowHint = False
-      Style = tsFlatButtons
+      AllowedOperations = [alopUpdateEh, alopDeleteEh, alopAppendEh]
+      AllowedSelections = [gstRecordBookmarks, gstAll]
+      DataSource = dsAdd
+      DrawMemoText = True
+      DynProps = <>
+      EvenRowColor = clWhite
+      Flat = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      FooterRowCount = 1
+      FooterParams.Color = 15532021
+      FrozenCols = 2
+      GridLineParams.VertEmptySpaceStyle = dessNonEh
+      IndicatorTitle.ShowDropDownSign = True
+      IndicatorTitle.TitleButton = True
+      EmptyDataInfo.Active = True
+      OddRowColor = clWhite
+      Options = [dgEditing, dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
+      OptionsEh = [dghFixed3D, dghHighlightFocus, dghClearSelection, dghAutoSortMarking, dghMultiSortMarking, dghDialogFind, dghColumnResize]
+      ParentFont = False
+      PopupMenu = pmAdd
+      SearchPanel.FilterOnTyping = True
+      SumList.Active = True
       TabOrder = 0
-      object TabSheet1: TTabSheet
-        Caption = 'Rincian Penerimaan Zakat Fitrah'
-        object geAdd: TDBGridEh
-          Left = 0
-          Top = 0
-          Width = 900
-          Height = 179
-          Align = alClient
-          AllowedOperations = [alopUpdateEh, alopDeleteEh, alopAppendEh]
-          AllowedSelections = [gstRecordBookmarks, gstAll]
-          DataSource = dsAdd
-          DrawMemoText = True
+      TitleParams.MultiTitle = True
+      Columns = <
+        item
+          AlwaysShowEditButton = True
+          CellButtons = <>
+          Color = 15329769
           DynProps = <>
-          EvenRowColor = clWhite
-          Flat = True
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          FooterRowCount = 1
-          FooterParams.Color = 15532021
-          FrozenCols = 2
-          GridLineParams.VertEmptySpaceStyle = dessNonEh
-          IndicatorTitle.ShowDropDownSign = True
-          IndicatorTitle.TitleButton = True
-          EmptyDataInfo.Active = True
-          OddRowColor = clWhite
-          Options = [dgEditing, dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
-          OptionsEh = [dghFixed3D, dghHighlightFocus, dghClearSelection, dghAutoSortMarking, dghMultiSortMarking, dghDialogFind, dghColumnResize]
-          ParentFont = False
-          PopupMenu = pmAdd
-          SearchPanel.FilterOnTyping = True
-          SumList.Active = True
-          TabOrder = 0
-          TitleParams.MultiTitle = True
-          Columns = <
-            item
-              AlwaysShowEditButton = True
-              CellButtons = <>
-              Color = 15329769
-              DynProps = <>
-              EditButton.Style = ebsPlusEh
-              EditButton.Visible = True
-              EditButton.OnClick = geAddColumns0EditButtonClick
-              EditButtons = <>
-              FieldName = 'NPWZ'
-              Footer.Value = 'Ket.: '
-              Footer.ValueType = fvtStaticText
-              Footers = <>
-              ReadOnly = True
-              Width = 102
-              OnEditButtonClick = geAddColumns0EditButtonClick
-            end
-            item
-              AlwaysShowEditButton = True
-              CellButtons = <>
-              Color = 16318448
-              DynProps = <>
-              EditButtons = <>
-              FieldName = 'Nama'
-              Footers = <>
-              ReadOnly = True
-              Width = 150
-            end
-            item
-              CellButtons = <>
-              Color = 16318448
-              DynProps = <>
-              EditButtons = <>
-              FieldName = 'Kelurahan'
-              Footers = <>
-              ReadOnly = True
-              Title.Caption = 'Alamat (Kel./Kec.)'
-              Width = 249
-            end
-            item
-              AlwaysShowEditButton = True
-              CellButtons = <>
-              DynProps = <>
-              EditButton.Images.NormalIndex = 75
-              EditButton.Images.HotIndex = 75
-              EditButton.Images.PressedIndex = 75
-              EditButton.Style = ebsMinusEh
-              EditButton.Visible = True
-              EditButton.Width = 16
-              EditButton.OnClick = geAddColumns4EditButtonClick
-              EditButtons = <>
-              Footers = <>
-              ReadOnly = True
-              Title.Caption = '...'
-              Width = 16
-              OnEditButtonClick = geAddColumns4EditButtonClick
-            end>
-          object RowDetailData: TRowDetailPanelControlEh
-          end
+          EditButton.Style = ebsPlusEh
+          EditButton.Visible = True
+          EditButtons = <>
+          FieldName = 'NPWZ'
+          Footer.Value = 'Ket.: '
+          Footer.ValueType = fvtStaticText
+          Footers = <>
+          ReadOnly = True
+          Width = 102
         end
-      end
-      object TabSheet2: TTabSheet
-        Caption = 'Rincian Penyaluran Zakat Fitrah'
-        ImageIndex = 1
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
-        object Panel3: TPanel
-          Left = 0
-          Top = 0
-          Width = 900
-          Height = 179
-          Align = alClient
-          BevelOuter = bvNone
-          Caption = 'UPZ Ini Tidak Memiliki SK/Ijin Menyalurkan.'
-          TabOrder = 0
-          object geDist: TDBGridEh
-            Left = 0
-            Top = 0
-            Width = 900
-            Height = 179
-            Align = alClient
-            AllowedOperations = [alopUpdateEh, alopDeleteEh, alopAppendEh]
-            AllowedSelections = [gstRecordBookmarks, gstAll]
-            DataSource = dsDist
-            DrawMemoText = True
-            DynProps = <>
-            EvenRowColor = clWhite
-            Flat = True
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            FooterRowCount = 1
-            FooterParams.Color = 15532021
-            FrozenCols = 2
-            GridLineParams.VertEmptySpaceStyle = dessNonEh
-            IndicatorTitle.ShowDropDownSign = True
-            IndicatorTitle.TitleButton = True
-            EmptyDataInfo.Active = True
-            OddRowColor = clWhite
-            Options = [dgEditing, dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
-            OptionsEh = [dghFixed3D, dghHighlightFocus, dghClearSelection, dghAutoSortMarking, dghMultiSortMarking, dghDialogFind, dghColumnResize]
-            ParentFont = False
-            PopupMenu = pmDist
-            SearchPanel.FilterOnTyping = True
-            SumList.Active = True
-            TabOrder = 0
-            TitleParams.MultiTitle = True
-            Columns = <
-              item
-                AlwaysShowEditButton = True
-                CellButtons = <>
-                Color = 15329769
-                DynProps = <>
-                EditButton.Style = ebsPlusEh
-                EditButton.Visible = True
-                EditButtons = <>
-                FieldName = 'NPM'
-                Footer.Value = 'Ket.: '
-                Footer.ValueType = fvtStaticText
-                Footers = <>
-                ReadOnly = True
-                Width = 102
-              end
-              item
-                AlwaysShowEditButton = True
-                CellButtons = <>
-                Color = 16318448
-                DynProps = <>
-                EditButtons = <>
-                FieldName = 'Nama'
-                Footers = <>
-                ReadOnly = True
-                Width = 135
-              end
-              item
-                CellButtons = <>
-                Color = 16318448
-                DynProps = <>
-                EditButtons = <>
-                FieldName = 'Kelurahan'
-                Footers = <>
-                ReadOnly = True
-                Title.Caption = 'Alamat (Kel./Kec.)'
-                Width = 234
-              end
-              item
-                AlwaysShowEditButton = True
-                CellButtons = <>
-                DynProps = <>
-                EditButton.Images.NormalIndex = 75
-                EditButton.Images.HotIndex = 75
-                EditButton.Images.PressedIndex = 75
-                EditButton.Style = ebsMinusEh
-                EditButton.Visible = True
-                EditButton.Width = 16
-                EditButtons = <>
-                Footers = <>
-                ReadOnly = True
-                Title.Caption = '...'
-                Width = 16
-              end>
-            object RowDetailData: TRowDetailPanelControlEh
-            end
-          end
+        item
+          AlwaysShowEditButton = True
+          CellButtons = <>
+          Color = 16318448
+          DynProps = <>
+          EditButtons = <>
+          FieldName = 'Nama'
+          Footers = <>
+          ReadOnly = True
+          Width = 150
         end
+        item
+          CellButtons = <>
+          Color = 16318448
+          DynProps = <>
+          EditButtons = <>
+          FieldName = 'Kelurahan'
+          Footers = <>
+          ReadOnly = True
+          Title.Caption = 'Alamat (Kel./Kec.)'
+          Width = 249
+        end
+        item
+          AlwaysShowEditButton = True
+          CellButtons = <>
+          DynProps = <>
+          EditButton.Images.NormalIndex = 75
+          EditButton.Images.HotIndex = 75
+          EditButton.Images.PressedIndex = 75
+          EditButton.Style = ebsMinusEh
+          EditButton.Visible = True
+          EditButton.Width = 16
+          EditButtons = <>
+          Footers = <>
+          ReadOnly = True
+          Title.Caption = '...'
+          Width = 16
+        end>
+      object RowDetailData: TRowDetailPanelControlEh
       end
     end
   end
@@ -747,8 +625,8 @@ object FTerimaUPZNonFitrah: TFTerimaUPZNonFitrah
     Options = [voPersistentData, voStored, voSkipUnSupportedFieldTypes]
     AfterPost = vtAddAfterPost
     AfterDelete = vtAddAfterPost
-    Left = 273
-    Top = 187
+    Left = 317
+    Top = 135
     Data = {03000000000000000000}
     object vtAddNama: TStringField
       FieldName = 'Nama'
@@ -816,11 +694,6 @@ object FTerimaUPZNonFitrah: TFTerimaUPZNonFitrah
       Size = 100
     end
   end
-  object dsDist: TDataSource
-    DataSet = vtDist
-    Left = 259
-    Top = 135
-  end
   object QKel: TUniQuery
     Connection = FMain.Koneksi
     SQL.Strings = (
@@ -839,34 +712,12 @@ object FTerimaUPZNonFitrah: TFTerimaUPZNonFitrah
       Size = 100
     end
   end
-  object vtDist: TVirtualTable
-    Options = [voPersistentData, voStored, voSkipUnSupportedFieldTypes]
-    AfterPost = vtAddAfterPost
-    AfterDelete = vtAddAfterPost
-    Left = 261
-    Top = 103
-    Data = {03000000000000000000}
-    object vtDistNPM: TStringField
-      FieldName = 'NPM'
-      Size = 18
-    end
-    object vtDistNama: TStringField
-      FieldName = 'Nama'
-      Size = 100
-    end
-    object vtDistKelurahan: TStringField
-      FieldName = 'Kelurahan'
-      LookupDataSet = QKel
-      Size = 100
-    end
-  end
   object pmDist: TPopupMenu
     Left = 256
     Top = 281
     object ambahMustahik1: TMenuItem
       Caption = 'Tambah Mustahik'
       ShortCut = 45
-      OnClick = ambahMustahik1Click
     end
     object N2: TMenuItem
       Caption = '-'
@@ -874,12 +725,10 @@ object FTerimaUPZNonFitrah: TFTerimaUPZNonFitrah
     object Hapus2: TMenuItem
       Caption = 'Hapus'
       ShortCut = 16430
-      OnClick = Hapus2Click
     end
     object HapusSemua2: TMenuItem
       Caption = 'Hapus Semua'
       ShortCut = 24622
-      OnClick = HapusSemua2Click
     end
   end
   object dsKel: TDataSource

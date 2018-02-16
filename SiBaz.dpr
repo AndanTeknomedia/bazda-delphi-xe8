@@ -96,7 +96,8 @@ uses
   u_mustahik in 'u_mustahik.pas' {FMustahik},
   u_upz in 'u_upz.pas' {FUPZ},
   u_new_mustahik_ex in 'u_new_mustahik_ex.pas' {FNewMustahikEx},
-  u_new_muzaki_ex in 'u_new_muzaki_ex.pas' {FNewMuzakiEx};
+  u_new_muzaki_ex in 'u_new_muzaki_ex.pas' {FNewMuzakiEx},
+  u_jurnal_pb_kas_bank in 'u_jurnal_pb_kas_bank.pas' {FJurnalPinbukKasBank};
 
 {$R *.res}
 

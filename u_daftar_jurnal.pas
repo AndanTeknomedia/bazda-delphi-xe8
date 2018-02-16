@@ -91,6 +91,8 @@ type
     Approve1: TMenuItem;
     acDel: TAction;
     HapusJurnal1: TMenuItem;
+    QKastotal_krd: TFloatField;
+    Panel2: TPanel;
     procedure FormCreate(Sender: TObject);
     procedure acRefreshExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -531,6 +533,15 @@ begin
   else
   if c = 'NY' then
     Params.Background := $00D5D5FF;
+  if Column.Index = Sender.Columns.Count-1 then
+  begin
+    if Dataset.FieldByName('total_trx').AsFloat <> Dataset.FieldByName('total_krd').AsFloat then
+    begin
+      Params.Text := 'Tidak Balance!';
+      Params.Background := clRed;
+      Params.Font.Style := [fsBold];
+    end;
+  end;
 end;
 
 procedure TFDaftarJurnal.gerekKeyDown(Sender: TObject; var Key: Word;

@@ -3,7 +3,7 @@ object FDaftarJurnal: TFDaftarJurnal
   Top = 0
   Caption = 'Daftar Jurnal'
   ClientHeight = 483
-  ClientWidth = 752
+  ClientWidth = 1097
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -24,7 +24,7 @@ object FDaftarJurnal: TFDaftarJurnal
   object ActionToolBar1: TActionToolBar
     Left = 0
     Top = 0
-    Width = 752
+    Width = 1097
     Height = 28
     ActionManager = ActionManager1
     ColorMap.HighlightColor = 14410210
@@ -39,17 +39,19 @@ object FDaftarJurnal: TFDaftarJurnal
     Font.Style = []
     ParentFont = False
     Spacing = 0
+    ExplicitWidth = 752
   end
   object Panel1: TPanel
     Left = 0
     Top = 28
-    Width = 752
+    Width = 1097
     Height = 30
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 1
+    ExplicitWidth = 752
     DesignSize = (
-      752
+      1097
       30)
     object Label10: TLabel
       Left = 11
@@ -103,7 +105,7 @@ object FDaftarJurnal: TFDaftarJurnal
       OnClick = CheckBox2Click
     end
     object Button1: TButton
-      Left = 674
+      Left = 1019
       Top = 3
       Width = 75
       Height = 25
@@ -111,13 +113,14 @@ object FDaftarJurnal: TFDaftarJurnal
       Caption = 'Jurnal'
       TabOrder = 0
       OnClick = Button1Click
+      ExplicitLeft = 674
     end
   end
   object DBGridEh1: TDBGridEh
     AlignWithMargins = True
     Left = 3
     Top = 61
-    Width = 746
+    Width = 1091
     Height = 419
     Align = alClient
     AllowedOperations = []
@@ -220,6 +223,14 @@ object FDaftarJurnal: TFDaftarJurnal
         Footers = <>
         Title.Caption = 'Approved'
         Width = 60
+      end
+      item
+        CellButtons = <>
+        DynProps = <>
+        EditButtons = <>
+        Footers = <>
+        Title.Caption = 'Keterangan'
+        Width = 136
       end>
     object RowDetailData: TRowDetailPanelControlEh
     end
@@ -233,7 +244,9 @@ object FDaftarJurnal: TFDaftarJurnal
       
         'SELECT j.kode, j.jenis_jurnal, j.branch_kode, j.user_id, j.tangg' +
         'al, j.no_bukti, j.uraian, j.checked, j.approved,'
-      '       sum(coalesce(d.debet,0)) total_trx'
+      
+        '       sum(coalesce(d.debet,0)) total_trx, sum(coalesce(d.kredit' +
+        ',0)) total_krd'
       '  FROM acc_jurnal_u j'
       #9#9#9'left join acc_jurnal_u_detail d on d.ref_jurnal = j.kode'
       
@@ -247,6 +260,23 @@ object FDaftarJurnal: TFDaftarJurnal
     TabOrder = 3
     Visible = False
     WantReturns = False
+  end
+  object Panel2: TPanel
+    Left = 592
+    Top = 388
+    Width = 185
+    Height = 41
+    Caption = 'Panel2'
+    Color = clRed
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 4
+    Visible = False
   end
   object ActionManager1: TActionManager
     ActionBars = <
@@ -341,7 +371,9 @@ object FDaftarJurnal: TFDaftarJurnal
       
         'SELECT j.kode, j.jenis_jurnal, j.branch_kode, j.user_id, j.tangg' +
         'al, j.no_bukti, j.uraian, j.checked, j.approved,'
-      '       sum(coalesce(d.debet,0)) total_trx'
+      
+        '       sum(coalesce(d.debet,0)) total_trx, sum(coalesce(d.kredit' +
+        ',0)) total_krd'
       '  FROM acc_jurnal_u j'
       #9#9#9'left join acc_jurnal_u_detail d on d.ref_jurnal = j.kode'
       
@@ -417,6 +449,10 @@ object FDaftarJurnal: TFDaftarJurnal
     end
     object QKastotal_trx: TFloatField
       FieldName = 'total_trx'
+      ReadOnly = True
+    end
+    object QKastotal_krd: TFloatField
+      FieldName = 'total_krd'
       ReadOnly = True
     end
   end

@@ -132,7 +132,6 @@ procedure TFTerimaUPZFitrah.acNewExecute(Sender: TObject);
 var
   jj: integer;
 begin
-  eTanggal.Date := date;
   eUPZ.clear;
   eVia.Clear;
   eAlamat.SetValues('', '');
@@ -427,6 +426,7 @@ var
   fn: string;
   f: TFieldDef;
 begin
+  eTanggal.Date := date;
   PageControl1.ActivePageIndex := 0;
   if not QKel.Active then
     QKel.Open

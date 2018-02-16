@@ -124,8 +124,14 @@ begin
 end;
 
 procedure TFUPZ.acDetailExecute(Sender: TObject);
+var
+  k: String;
 begin
-  //
+  if vtMzk.IsEmpty then
+    exit;
+  k := vtMzkNPWZ.AsString;
+  if EditMuzakiEx(k) then
+    lblChanged.Show;
 end;
 
 procedure TFUPZ.acPrintNPMExecute(Sender: TObject);
