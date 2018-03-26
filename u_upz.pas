@@ -70,6 +70,7 @@ type
     acAdd: TAction;
     UPZBaru1: TMenuItem;
     lblChanged: TLabel;
+    PrintKartuMustahik1: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure acCloseExecute(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -104,7 +105,7 @@ var
 implementation
 
 uses u_display_text, u_select_kode_name, u_frutils, u_select_master_detail,
-  u_jurnal, u_new_muzaki, u_new_muzaki_ex;
+  u_jurnal, u_new_muzaki, u_new_muzaki_ex, u_pilih_opsi;
 
 {$R *.dfm}
 
@@ -139,26 +140,45 @@ var
   rpt: String;
   bm: TBookmark;
   codes: TStringList;
+  fm: TfrxMemoView;
   i: integer;
-  wherecode: String;
 begin
   if vtMzk.IsEmpty then
   begin
     Inform('Tidak ada data untuk diprint.');
     exit;
   end;
-  rpt := FMain.ReportsDir+'\pjss_daftar_jurnal.fr3';
+  if vtMzktipe.AsString.ToLower = 'head' then
+  begin
+    inform('Pilih salah satu UPZ');
+    exit;
+  end;
+  i := Ask3Options('Jenis Kwitansi:'#13'A. Setoran UPZ'#13'B. Bayar Hak Amil',
+      0, 'A. UPZ', 'B. Amil', 'Batal');
+  if i = mrYes then
+    rpt := FMain.ReportsDir+'\baz_kw.fr3'
+  else
+  if i = mrNo then
+    rpt := FMain.ReportsDir+'\baz_kw_upz_amil.fr3'
+  else
+    exit;
   if not FileExists(rpt) then
   begin
     Warn('File laporan "'+rpt+'" tidak ditemukan!');
     exit;
   end;
 
+  inform('Gunakan kertas A4 vertical atau kertas A5 (A4 dipotong 2) secara horizontal.');
+
   bm := vtMzk.GetBookmark;
   vtMzk.DisableControls;
   try
     frxReport1.LoadFromFile(rpt);
-
+    if i = mRyes then
+      FRMemo(frxReport1, 'MUPz').Text := 'Bendahara UPZ '+vtMzkNama.AsString;
+    fm := FRMemo(frxReport1, 'Mtgl');
+    // fm.Text := fm.Text + '                 20  ';
+    FRMemo(frxReport1, 'MRp').Text := '';
     frxReport1.ShowReport();
   finally
     if vtMzk.BookmarkValid(bm) then

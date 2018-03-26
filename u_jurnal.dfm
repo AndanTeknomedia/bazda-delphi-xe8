@@ -256,6 +256,16 @@ object FJurnal: TFJurnal
         Anchors = [akLeft, akBottom]
         TabOrder = 1
       end
+      object ckAutoClose: TCheckBox
+        Left = 192
+        Top = 15
+        Width = 225
+        Height = 17
+        Caption = 'Tutup Otomatis Setelah Save'
+        TabOrder = 2
+        Visible = False
+        OnClick = ckAutoCloseClick
+      end
     end
   end
   object ckApprove: TCheckBox

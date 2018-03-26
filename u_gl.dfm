@@ -305,6 +305,7 @@ object FGL: TFGL
             Action = acDetJurnal
             Caption = '&Detail Jurnal...'
             ImageIndex = 81
+            ShortCut = 113
           end>
         ActionBar = ActionToolBar1
       end>
@@ -333,6 +334,9 @@ object FGL: TFGL
     object acDetJurnal: TAction
       Caption = 'Detail Jurnal...'
       ImageIndex = 81
+      SecondaryShortCuts.Strings = (
+        'Ctrl+Enter')
+      ShortCut = 113
       OnExecute = acDetJurnalExecute
     end
   end

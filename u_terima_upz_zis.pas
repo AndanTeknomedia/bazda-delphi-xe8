@@ -288,6 +288,7 @@ begin
           vtAdd.Next;
         end;
         // Piutang UPZ
+        {
         if ePiutang.Value<>0 then
         begin
           QDet.Append;
@@ -344,6 +345,7 @@ begin
           QDetnama.AsString := 'Pembayaran Amil UPZ: '+eUPZ.Text;
           try QDet.Post ; except inc(e) end;
         end;
+        }
 
       end
       else
@@ -532,7 +534,7 @@ begin
   begin
     JenisSalur.kode := '56';
     jenisDana.kode  := '31070101';
-    ePersenAmil.Value := FMain.PersenAmilDanaHibah;                   sds
+    ePersenAmil.Value := FMain.PersenAmilDanaHibah;
     RekAmilUpz := FMain.rekAmilUPZInfak;
   end
   else

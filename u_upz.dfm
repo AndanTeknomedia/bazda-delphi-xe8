@@ -338,12 +338,12 @@ object FUPZ: TFUPZ
           end
           item
             Action = acDetail
+            Caption = '&Edit...'
             ImageIndex = 86
             ShortCut = 113
           end
           item
             Action = acPrintNPM
-            Caption = '&Print Kartu Mustahik'
             ImageIndex = 88
             ShortCut = 16464
           end
@@ -372,7 +372,7 @@ object FUPZ: TFUPZ
       OnExecute = acRefreshExecute
     end
     object acPrintNPM: TAction
-      Caption = 'Print Kartu Mustahik'
+      Caption = 'Print Kwitansi'
       ImageIndex = 88
       ShortCut = 16464
       OnExecute = acPrintNPMExecute
@@ -406,8 +406,8 @@ object FUPZ: TFUPZ
     PreviewOptions.Zoom = 1.000000000000000000
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
-    ReportOptions.CreateDate = 41350.956592233800000000
-    ReportOptions.LastChange = 42894.058339664350000000
+    ReportOptions.CreateDate = 43174.628680856500000000
+    ReportOptions.LastChange = 43174.679181469900000000
     ScriptLanguage = 'PascalScript'
     StoreInDFM = False
     OnPreview = frxReport1Preview
@@ -422,6 +422,9 @@ object FUPZ: TFUPZ
     end
     object UPZBaru1: TMenuItem
       Action = acAdd
+    end
+    object PrintKartuMustahik1: TMenuItem
+      Action = acPrintNPM
     end
   end
   object vtMzk: TVirtualTable

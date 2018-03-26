@@ -205,6 +205,7 @@ object FTerimaUPZNonFitrah: TFTerimaUPZNonFitrah
         Top = 52
         Width = 130
         Height = 21
+        Color = 14408667
         DisplayFormat = '#,#0.## ;(#,#0.##) ; '
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clRed
@@ -212,8 +213,10 @@ object FTerimaUPZNonFitrah: TFTerimaUPZNonFitrah
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
+        ReadOnly = True
         ShowButton = False
         TabOrder = 4
+        DisabledColor = clGrayText
         DecimalPlacesAlwaysShown = False
         OnChange = eUPZTerbayarChange
       end

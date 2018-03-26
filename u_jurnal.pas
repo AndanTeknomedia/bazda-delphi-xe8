@@ -84,6 +84,7 @@ type
     vtAddid: TStringField;
     ckApprove: TCheckBox;
     ckCek: TCheckBox;
+    ckAutoClose: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure acCloseExecute(Sender: TObject);
@@ -96,6 +97,7 @@ type
     procedure vtAddAfterPost(DataSet: TDataSet);
     procedure geRekColumns1EditButtons0Click(Sender: TObject;
       var Handled: Boolean);
+    procedure ckAutoCloseClick(Sender: TObject);
   private
     { Private declarations }
     EditMode: Boolean;
@@ -122,6 +124,10 @@ var
 begin
   Result := false;
   F := TFJurnal.Create(Application);
+  F.ActiveControl := f.gerek;
+  f.ckAutoClose.Visible := true;
+  s := GetOption(CurrentUser.KodeCabang+'-ckAutoClose@TFJurnal-checked', true);
+  f.ckAutoClose.Checked := StrToBoolDef(s, false);
   F.acNew.Enabled := false;
   F.EditMode := True;
   f.QJ.ParamByName('kd').AsString := KodeJurnal;
@@ -361,7 +367,10 @@ begin
       else
       begin
         CommitTrans;
-        MsgBoxTimeout('Sukses', 'Jurnal telah diedit.', 3);
+        if not ckAutoClose.Checked then
+          MsgBoxTimeout('Sukses', 'Jurnal telah diedit.', 3)
+        else
+          Close;
         {
         if Ask('Jurnal tersimpan.'#13'Tutup form?') = mrNo then
           acNew.Execute
@@ -398,6 +407,11 @@ begin
     vtAdd.Post;
   end;
   sl.Free;
+end;
+
+procedure TFJurnal.ckAutoCloseClick(Sender: TObject);
+begin
+  SetOption(CurrentUser.KodeCabang+'-ckAutoClose@TFJurnal-checked', BoolToStr(ckAutoClose.Checked, true), true);
 end;
 
 procedure TFJurnal.Edit3Click(Sender: TObject);

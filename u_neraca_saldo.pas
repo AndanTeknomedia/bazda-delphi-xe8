@@ -183,7 +183,7 @@ end;
 
 procedure TFNeracaSaldo.luFilterCloseUp(Sender: TObject);
 begin
-  acRefresh.Execute;
+  // acRefresh.Execute;
 end;
 
 procedure TFNeracaSaldo.RefreshData;
@@ -282,8 +282,8 @@ begin
   kode := GetOption(CurrentUser.KodeCabang+'-default-nrc-saldo-tahun', true);
   cbTahun.ItemIndex :=  cbTahun.Items.IndexOf(_s(CurrentYear));
   cbTipe.Items.Clear;
-  cbTipe.Items.Add('Saldo Periode - Sejak Awal Transaksi');
-  cbTipe.Items.Add('Saldo Posisi  - Sejak Awal Bulan');
+  cbTipe.Items.Add('Saldo Akumulasi');
+  cbTipe.Items.Add('Saldo Bulanan');
   kode := GetOption(CurrentUser.KodeCabang+'-default-nrc-saldo-tipe', true);
   cbTipe.ItemIndex := 0;
   kode := GetOption(CurrentUser.KodeCabang+'-default-nrc-saldo-filter', true);

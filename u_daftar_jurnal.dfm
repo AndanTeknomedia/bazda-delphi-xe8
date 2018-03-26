@@ -39,7 +39,6 @@ object FDaftarJurnal: TFDaftarJurnal
     Font.Style = []
     ParentFont = False
     Spacing = 0
-    ExplicitWidth = 752
   end
   object Panel1: TPanel
     Left = 0
@@ -49,7 +48,6 @@ object FDaftarJurnal: TFDaftarJurnal
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 1
-    ExplicitWidth = 752
     DesignSize = (
       1097
       30)
@@ -113,7 +111,6 @@ object FDaftarJurnal: TFDaftarJurnal
       Caption = 'Jurnal'
       TabOrder = 0
       OnClick = Button1Click
-      ExplicitLeft = 674
     end
   end
   object DBGridEh1: TDBGridEh
@@ -295,7 +292,7 @@ object FDaftarJurnal: TFDaftarJurnal
             Action = acCekApprove
             Caption = 'C&ek && Approve'
             ImageIndex = 83
-            ShortCut = 113
+            ShortCut = 114
           end
           item
             Action = acDel
@@ -322,6 +319,7 @@ object FDaftarJurnal: TFDaftarJurnal
             Action = acDetJurnal
             Caption = '&Detail Jurnal...'
             ImageIndex = 81
+            ShortCut = 113
           end>
         ActionBar = ActionToolBar1
       end>
@@ -350,12 +348,15 @@ object FDaftarJurnal: TFDaftarJurnal
     object acDetJurnal: TAction
       Caption = 'Detail Jurnal...'
       ImageIndex = 81
+      SecondaryShortCuts.Strings = (
+        'Ctrl+Enter')
+      ShortCut = 113
       OnExecute = acDetJurnalExecute
     end
     object acCekApprove: TAction
       Caption = 'Cek && Approve'
       ImageIndex = 83
-      ShortCut = 113
+      ShortCut = 114
       OnExecute = acCekApproveExecute
     end
     object acDel: TAction
@@ -488,7 +489,6 @@ object FDaftarJurnal: TFDaftarJurnal
     Connection = FMain.Koneksi
     SQL.Strings = (
       'select * from acc_jurnal_u where kode = :kdjur')
-    Active = True
     OnCalcFields = qjCalcFields
     Left = 295
     Top = 270

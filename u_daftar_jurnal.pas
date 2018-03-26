@@ -422,9 +422,11 @@ end;
 procedure TFDaftarJurnal.acRefreshExecute(Sender: TObject);
 var
   tgl1, tgl2: TDateTime;
+  k,
   sql: String;
 begin
   QKas.DisableControls;
+  k := QKaskode.AsString;
   if QKas.Active then
     QKas.Close;
   SetOption(CurrentUser.KodeCabang+'-'+Self.Name+'defbulan', _s(cbBulan.ItemIndex));
@@ -447,13 +449,13 @@ begin
   if CheckBox2.Checked then
     sql := StringReplace(sql,'(2=2)', '(j.approved=''Y'')', [rfIgnoreCase, rfReplaceAll]);
   QKas.SQL.Text := sql;
-
   ScreenBussy;
   try
     QKas.ParamByName('cabang').AsString := CurrentUser.KodeCabang;
     QKas.ParamByName('tgl1').AsDateTime := tgl1;
     QKas.ParamByName('tgl2').AsDateTime:= tgl2;
-    QKas.Open;        
+    QKas.Open;
+    QKas.Locate('kode', k, []);
   finally
     QKas.EnableControls;
     ScreenIdle;

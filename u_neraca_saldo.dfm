@@ -196,7 +196,7 @@ object FNeracaSaldo: TFNeracaSaldo
     end
     object cbTahun: TComboBox
       Left = 398
-      Top = 5
+      Top = 6
       Width = 63
       Height = 21
       Style = csDropDownList
